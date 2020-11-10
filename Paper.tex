@@ -1,0 +1,211 @@
+% !TeX spellcheck = de_DE
+
+\documentclass[12pt,a4paper,parskip=half]{scrreprt}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{acronym}
+\usepackage{graphicx}
+\usepackage[below]{placeins}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{textcomp}
+\usepackage{caption}
+
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
+
+\title{Bericht Praxisphase I}
+\author{Sebastian Wallat}
+\date{\today}
+
+\clubpenalty = 10000 % schliesst Schusterjungen aus
+\widowpenalty = 10000 % schliesst Hurenkinder aus
+
+\graphicspath{{./images/}}
+
+\begin{document}
+
+\begin{titlepage}
+	
+	\centering
+	
+%%	\ifcsempty{iodhbwm@institute@logo}{%
+		
+%%		\includegraphics[height=1.5cm]{dhbw-logo}
+		
+	{%
+		
+		\begin{minipage}[c]{.25\textwidth}
+			
+			\includegraphics[width=\textwidth, height = 2cm]{dhbw-logo}
+			
+		\end{minipage}
+		\begin{minipage}[c]{0.46\textwidth}
+			
+			\includegraphics[width=\textwidth]{empty}
+			
+		\end{minipage}
+		\begin{minipage}[c]{.25\textwidth}
+			
+			\raggedleft
+			
+			\includegraphics[width=\textwidth, height =2cm, keepaspectratio]{dlr-logo}
+			
+		\end{minipage}
+		
+	}
+	
+	
+	
+	\bigskip
+	
+	
+	
+	\Large\textsc{Hausarbeit}
+	
+	
+	
+	\normalsize
+	
+	des Studiengangs Informationstechnik\par
+	
+	der Dualen Hochschule Baden-Württemberg Mannheim
+	
+	
+	
+	\rule{\textwidth}{.5mm}\bigskip
+	
+	
+	
+	\textsc{\large Sicherheit und Fehlermodelle von verteilten Systemen}	
+	
+	
+	\rule{\textwidth}{.5mm}
+	
+	
+	
+	\vfill
+	
+	
+	
+	\par
+	
+	{\bfseries\large Julian Fuchs, Marius Bröcker, Sebastian Wallat}\par
+	
+	\today
+	
+	
+	
+	\vfill
+	
+	
+	
+	\small{%
+		
+		\begin{tabularx}{\textwidth}{@{}lX@{}}
+			
+			\toprule
+			
+			
+			Bearbeitungszeitraum: & 24.10.2020-27.11.2020\\
+			
+			Matrikelnummer, Kurs: & 1708267, TINF18-IT1\\
+			
+			Vorlesung: & Verteilte Systeme \\
+			
+		\end{tabularx}
+		
+	}
+	
+	\cleardoublepage
+	
+\end{titlepage}
+
+
+\newpage
+\pagenumbering{Roman}
+
+\chapter*{Eidesstattliche Erklärung}
+%%\thispagestyle{empty}
+\vspace{50pt}
+Wir versichern hiermit, dass wir diese Hausarbeit mit dem Thema: ''Sicherheit und Fehlermodelle von verteilten Systemen'' selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt haben.
+\\
+\\
+
+\vfill
+\noindent\rule{5cm}{.4pt}\hfill\rule{5cm}{.4pt}\par
+\noindent Datum, Ort \hfill Unterschrift 
+
+\newpage
+\thispagestyle{empty}
+\chapter*{Zusammenfassung}
+
+Thema
+\\
+\bigskip
+
+\tableofcontents
+\addtocontents{toc}{}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis} 
+%%\thispagestyle{empty}
+
+\newpage
+\chapter*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+%%\thispagestyle{empty}
+\begin{acronym}[HTTP]
+	\acro{DLR}{\textbf{D}eutsches Zentrum für \textbf{L}uft- und \textbf{R}aumfahrt}
+\end{acronym}
+
+\pagenumbering{arabic}
+
+\chapter{Einführung}
+
+
+\chapter{Sicherheit}
+
+
+\section{Schutzziele}
+
+
+\section{Angriffsvektoren}
+
+
+\section{Schutzmaßnahmen}
+
+
+\subsection{Verschlüsselung}
+
+
+\subsection{Authentisierung}
+
+
+\subsection{Autorisierung}
+
+
+\chapter{Fehlermodelle}
+
+
+\section{Anforderungen}
+
+
+\section{Arten von Fehlern und Störungen}
+
+
+\section{Fehlerbehebung}
+
+
+\newpage
+
+\nocite{*}
+\thispagestyle{headings}
+
+\bibliographystyle{IEEEtr}
+\bibliography{bibo} 
+
+
+\end{document}
