@@ -188,15 +188,34 @@ Thema
 
 
 \chapter{Fehlermodelle}
-
+Sowohl System externe als auch interne Ereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger Anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten). Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von Teilsystemen.
 
 \section{Anforderungen}
+%Ziel: Fehlertoleranz\\
+%- Verfügbarkeit\\
+%- Zuverlässigkeit\\
+%- Funktionssicherheit\\
+%- Wartbarkeit\\
+Ausfälle und Störungen eines Teilsystems gänzlich vorzubeugen ist sehr schwer -- wenn nicht unmöglich. Daher sollte ein zentrales Ziel eines verteilten Systems die 
 
 
 \section{Arten von Fehlern und Störungen}
-
+- Vorübergehend\\
+- Wiederkehrend\\
+- Permanent\\
+\\
+- Absturz\\
+- Dienstausfall\\
+- Zeitbedingter Ausfall\\
+- Ausfall korrekter Antwort\\
+- Byzantinischer oder zufälliger Ausfall
+\\
+- Ausfall von Client\\
+- Kommunikationssystem\\
+- (Teil-)System\\
 
 \section{Fehlerbehebung}
+- wichtig: Redundanz\\
 
 
 \newpage
