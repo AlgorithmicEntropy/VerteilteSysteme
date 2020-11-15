@@ -223,15 +223,43 @@ Ziel eines möglichen Angreifers ist es, eines der im vorherigen Kapitel erläut
 
 \section{Schutzmaßnahmen}
 
+Um die Schutzziele Vertraulichkeit, Integrität und Verfügbarkeit vor den genannten Angriffen zu bewahren, müssen geeignete Sicherheitsmechanismen bereitgestellt werden. Diese Verfahren basieren grundlegend auf dem Gebiet der Kryptographie.
 
 \subsection{Verschlüsselung}
 
+Damit die Vertraulichkeit bei der Kommunikation von verteilten Systemen gewährleistet werden kann, muss die ursprünglich im Klartext enthaltene Nachricht durch Anwendung kryptographischer Algorithmen verschlüsselt werden. Eine Verschlüsselung der Daten erfolgt hierbei beim Sender und eine Entschlüsselung beim Empfänger. \\
+Um die Verschlüsselung zu gewährleisten muss weiterhin sichergestellt werden, dass die Schlüssel (auch bei einer Übertragung) geheim bleiben.
+
+Die Verschlüsselung kann in drei grundlegenden Klassen eingeteilt werden:
+\begin{itemize}
+	\item Symmetrische Verfahren: ein gemeinsamer Schlüssel zur Ver- und Entschlüsselung
+	\item Asymmetrische Verfahren: zwei unterschiedliche Schlüssel, unterteilt in einen öffentlichen zur Verschlüsselung und einen privaten zur Entschlüsselung
+	\item Kombinierte Verfahren / Hybridverfahren: Zusammensetzung der beiden genannten Verfahren
+\end{itemize}
+
+Der Vorteil der asymmetrischen Verfahren im Gegensatz zu den symmetrischen ist, dass ein öffentlicher Austausch des Schlüssels erfolgen kann, ohne dass die Vertraulichkeit der Information gefährdet wird. Durch die hohe Komplexität der Berechnungsvorschrift für das Schlüsselpaar ist die Performanz jedoch schlechter als bei der symmetrischen Verschlüsselung.
+
+Standardmäßig eingesetzte symmetrische Verschlüsselungsalgorithmen sind das nicht mehr sichere DES (\textit{Data Encryption Standard}) und dessen Erweiterung Triple-DES, sowie AES (\textit{Advanced Encryption Standard}). Das erste veröffentlichte asymmetrische Verschlüsselungsverfahren und bekannteste Beispiel dafür ist RSA.
 
 \subsection{Authentisierung}
 
+Über eine Authentisierung wird gewährleistet, dass die Identität der Systeme, mit denen kommuniziert wird, korrekt ist. Diese Maßnahme dient sowohl zum Schutz der Vertraulichkeit als auch der Integrität.
+
+Ebenso wie bei der Verschlüsselung werden bei der Authentisierung sowohl symmetrische als auch asymmetrische Verschlüsselungsverfahren eingesetzt.
+
+Bei dem symmetrischen Verfahren agiert eine Schlüsselvergabestelle als zentrale Instanz zur Authentisierung. Aufgrund der Relevanz muss diese gegen Ein- und Angriffe besonders gut geschützt und in einem sicheren Bereich des Servers lokalisiert sein. \\
+Sobald ein Client eine Anfrage mit den eindeutigen Identifikatoren von ihm und des Servers sendet, generiert die Vergabestelle eine \textit{Challenge}, häufig eine zufällige Zahl. Diese muss der Client daraufhin mit dem gemeinsamen Schlüssel verschlüsselt zurücksenden und nach der Entschlüsselung kann die Vergabestelle wiederum überprüfen ob die \textit{Challenge} absolviert wurde, indem die Zahl korrekt verschlüsselt wurde.
+
+Das asymmetrische Verfahren basiert hingegen auf zwei \textit{Challenges}, die einerseits vom Server und andererseits vom Client gelöst werden müssen. Der Client sendet hierbei in seiner Anfrage, die über den öffentlichen Schlüssel des Servers verschlüsselt wird, neben seinem Identifikator eine zufällige Zahl. Der Server kann diese anschließend entschlüsseln und generiert eine weitere zufällige Zahl und einen Konversationsschlüssel und sendet diese zusammen mit dem Ergebnis aus der ersten \textit{Challenge} verschlüsselt mit dem öffentlichen Schlüssel des Clients zurück. Dieser kann die Nachricht nun entschlüsseln und überprüfen ob der Server die \textit{Challenge} absolviert und somit seine Identität bestätigt hat. Letztendlich wird die Zufallszahl des Servers, verschlüsselt mit dem Konversationsschlüssel, an den Server zurückgesendet und dieser validiert daraufhin, dass der Client die korrekte Zahl gesendet hat und somit die zweite \textit{Challenge} gelöst hat.
 
 \subsection{Autorisierung}
 
+Mit Autorisierung wird die Überprüfung von festgelegten Zugriffsrechten von authentisierten Identitäten bezeichnet. 
+
+Zur Darstellung der Zugriffsrechte wird im Allgemeinen eine Zugriffsmatrix verwendet. In dieser sind in den Spalten die Identitäten, Subjekte genannt, und in den Zeilen die Dienste und Ressourcen, Objekte genannt, abgebildet. In den einzelnen Zellen sind jeweils die Operationen (z. B. lesen, schreiben, ausführen) zugeordnet. \\
+Aufgrund von höherer Fehlertoleranz und besserer Performanz wird die Zugriffsmatrix dezentral hinterlegt. Dabei gibt es grundsätzlich zwei Ansätze: entweder werden die Zeilen, sogenannte Zugriffskontrolllisten, für die einzelnen Objekte abgespeichert oder die Spalten, in dem Fall als Berechtigungen bezeichnet, werden für jedes Subjekt abgelegt.
+
+Durch Gruppen, eine Zusammenfassung von mehreren Subjekten, und Rollen, eine Kombination von verschiedenen Zugriffsrechten, können die Dimensionen der Zugriffsmatrix deutlich reduziert werden.
 
 \chapter{Fehlermodelle}
 Sowohl System externe als auch interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger Anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente könnten sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen System-Komponenten.
