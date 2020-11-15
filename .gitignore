@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -300,7 +299,7 @@ TSWLatexianTemp*
 # *.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
-*.pdf
+Paper.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -552,4 +551,3 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
->>>>>>> upstream/main
