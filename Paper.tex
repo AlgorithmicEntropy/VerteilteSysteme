@@ -31,269 +31,269 @@
 \graphicspath{{./images/}}
 
 \begin{document}
-
-\begin{titlepage}
 	
-	\centering
-	
-%%	\ifcsempty{iodhbwm@institute@logo}{%
+	\begin{titlepage}
 		
-%%		\includegraphics[height=1.5cm]{dhbw-logo}
+		\centering
 		
-	{%
+		%%	\ifcsempty{iodhbwm@institute@logo}{%
 		
-		\begin{minipage}[c]{.25\textwidth}
-			
-			\includegraphics[width=\textwidth, height = 2cm]{dhbw-logo}
-			
-		\end{minipage}
-		\begin{minipage}[c]{0.46\textwidth}
-			
-			\includegraphics[width=\textwidth]{empty}
-			
-		\end{minipage}
-		\begin{minipage}[c]{.25\textwidth}
-			
-			\raggedleft
-			
-			\includegraphics[width=\textwidth, height =2cm, keepaspectratio]{dlr-logo}
-			
-		\end{minipage}
+		%%		\includegraphics[height=1.5cm]{dhbw-logo}
 		
-	}
+		{%
+			
+			\begin{minipage}[c]{.25\textwidth}
+				
+				\includegraphics[width=\textwidth, height = 2cm]{dhbw-logo}
+				
+			\end{minipage}
+			\begin{minipage}[c]{0.46\textwidth}
+				
+				\includegraphics[width=\textwidth]{empty}
+				
+			\end{minipage}
+			\begin{minipage}[c]{.25\textwidth}
+				
+				\raggedleft
+				
+				\includegraphics[width=\textwidth, height =2cm, keepaspectratio]{dlr-logo}
+				
+			\end{minipage}
+			
+		}
+		
+		
+		
+		\bigskip
+		
+		
+		
+		\Large\textsc{Hausarbeit}
+		
+		
+		
+		\normalsize
+		
+		des Studiengangs Informationstechnik\par
+		
+		der Dualen Hochschule Baden-Württemberg Mannheim
+		
+		
+		
+		\rule{\textwidth}{.5mm}\bigskip
+		
+		
+		
+		\textsc{\large Sicherheit und Fehlermodelle von verteilten Systemen}	
+		
+		
+		\rule{\textwidth}{.5mm}
+		
+		
+		
+		\vfill
+		
+		
+		
+		\par
+		
+		{\bfseries\large Julian Fuchs, Marius Bröcker, Sebastian Wallat}\par
+		
+		\today
+		
+		
+		
+		\vfill
+		
+		
+		
+		\small{%
+			
+			\begin{tabularx}{\textwidth}{@{}lX@{}}
+				
+				\toprule
+				
+				
+				Bearbeitungszeitraum: & 24.10.2020-27.11.2020\\
+				
+				Matrikelnummer, Kurs: & 1708267, TINF18-IT1\\
+				
+				Vorlesung: & Verteilte Systeme \\
+				
+			\end{tabularx}
+			
+		}
+		
+		\cleardoublepage
+		
+	\end{titlepage}
 	
 	
+	\newpage
+	\pagenumbering{Roman}
 	
+	\chapter*{Eidesstattliche Erklärung}
+	%%\thispagestyle{empty}
+	\vspace{50pt}
+	Wir versichern hiermit, dass wir diese Hausarbeit mit dem Thema: ''Sicherheit und Fehlermodelle von verteilten Systemen'' selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt haben.
+	\\
+	\\
+	
+	\vfill
+	\noindent\rule{5cm}{.4pt}\hfill\rule{5cm}{.4pt}\par
+	\noindent Datum, Ort \hfill Unterschrift 
+	
+	\newpage
+	\thispagestyle{empty}
+	\chapter*{Zusammenfassung}
+	
+	Thema
+	\\
 	\bigskip
 	
+	\tableofcontents
+	\addtocontents{toc}{}
+	
+	\listoffigures
+	\addcontentsline{toc}{chapter}{Abbildungsverzeichnis} 
+	%%\thispagestyle{empty}
+	
+	\newpage
+	\chapter*{Abkürzungsverzeichnis}
+	\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+	%%\thispagestyle{empty}
+	\begin{acronym}[HTTP]
+		\acro{DLR}{\textbf{D}eutsches Zentrum für \textbf{L}uft- und \textbf{R}aumfahrt}
+	\end{acronym}
+	
+	\pagenumbering{arabic}
+	
+	\chapter{Einführung}
+	
+	Ein wichtiger Aspekt verteilter Systeme (vS) ist das erhöhte Sicherheits- und Schutzbedürfnis dieser. Dies ergibt sich aus ihrem offenen Aufbau, sowie der netzwerkgestützten Kommunikation zwischen den einzelnen Teilsystemen. Aus diesem Grund besitzen verteilte Systeme eine viel zahl verschiedenster Angriffsvektoren. Besonders im Kontext von kritischer Infrastruktur (KRITIS) und verschiedenen Branchen wie etwa Banken und E-Commerce müssen Sicherheit und Datenschutz als essentielle Bestandteile des Gesamtsysteme angesehen werden.
+	\\
+	Um eine möglichst große Zahl an möglichen Sicherheitsproblemen zu eliminieren ist es notwendig schon während der ersten Planungsphasen die sicherheitsrelevanten Aspekte mit in die Überlegungen einzubeziehen. So können eventuelle Schwachstellen möglichst früh identifiziert und entsprechende Gegenmaßnamen in das System integriert werden. Wichtig hierbei ist das alle Schutzmaßnamen kontinuierlich im gesamten System implementiert werden, da schon eine einziger Mangel innerhalb einer Komponente zur Kompromittierung des Gesamtsystems führen kann.
+	\\
+	Um allen Sicherheits- und Datenschutz relevanten Anforderungen modernen IT Systeme zu entsprechen sind eine viel zahl verschiedenster Mechanismen und Sub-Komponenten zu betrachten. Die wichtigsten dieser sollen im weiteren Verlauf dieser Arbeit näher beleuchtet werden, hierzu zählen unter anderem:
+	
+	\begin{itemize}
+		\item Kryptoverfahren
+		\item Authentisierung
+		\item Autorisierung
+		\item Arten von Fehlern und Störungen, sowie deren korrekte Behandlung
+	\end{itemize}
+	
+	\chapter{Sicherheit}
 	
 	
-	\Large\textsc{Hausarbeit}
+	\section{Schutzziele}
+	
+	An dieser Stelle lohnt es sich kurz auf die Grundlagen der Informationssicherheit IT-Sicherheit einzugehen.
+	\\
+	\\
+	''Als Informationssicherheit bezeichnet man Eigenschaften von informationsverarbeitenden und -lagernden (technischen oder nicht-technischen) Systemen, die die
+	Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität sicherstellen.
+	Informationssicherheit dient dem Schutz vor Gefahren bzw. Bedrohungen, der Vermeidung von wirtschaftlichen Schäden und der Minimierung von Risiken.''[\cite{ScriptITSicherheit}]
+	\\
+	''IT-Sicherheit ist ein Teil der Informationssicherheit. In Abgrenzung zur IT-Sicherheit umfasst die
+	Informationssicherheit neben der Sicherheit der IT-Systeme und der darin gespeicherten Daten auch noch die Sicherheit von nicht elektronisch verarbeiteten Informationen.''[\cite{ScriptITSicherheit}]
+	\\
+	\\
+	Somit lässt sich festhalten, das die Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität die oberste Priorität aller Sicherheitstechnischen Überlegungen darstellen sollten. Im folgenden sollen diese drei Schutzziele weiter erläutert werden:
+	
+	\begin{itemize}
+		\item Vertraulichkeit: Verhinderung von jeglichen unautorisierter Informationsgewinn (Abgreifen von vertraulichen Daten)
+		\item Integrität: Verhinderung von unabsichtlicher bzw. unautorisierter Modifizierung von Daten. (Falls eine Datenveränderung nicht komplett unterbunden werden kann, so muss zumindest gewährleistet werden, dass diese vom System bemerkt wird)
+		\item Verfügbarkeit: Es muss verhinder werden, dass autorisierte Subjekte von unautorisierten Zugriffen in der Nutzung ihrer Berechtigungen beeinträchtigt werden.
+	\end{itemize}
+	
+	
+	\section{Angriffsvektoren}
+	
+	Ziel eines möglichen Angreifers ist es, eines der im vorherigen Kapitel erläuterten Schutzziele zu verletzen. Hierbei kann ein bestimmter Angriff (Vektor) durchaus mehrere Schutzziele kompromittieren. Im folgenden sollen einige mögliche Angriffsmöglichkeiten beispielhaft aufgeführt werden.
+	
+	\begin{itemize}
+		\item Man-in-the-Middle(MITM): Vertraulichkeit
+		\item Trojaner (z.B. Emotet/Trickbot): Integrität
+		\item Denial of Service (Dos/DDos): Verfügbarkeit
+		\item SQL-Injection: Vertraulichkeit, Integrität
+	\end{itemize}
 	
 	
 	
-	\normalsize
-	
-	des Studiengangs Informationstechnik\par
-	
-	der Dualen Hochschule Baden-Württemberg Mannheim
+	\section{Schutzmaßnahmen}
 	
 	
-	
-	\rule{\textwidth}{.5mm}\bigskip
-	
+	\subsection{Verschlüsselung}
 	
 	
-	\textsc{\large Sicherheit und Fehlermodelle von verteilten Systemen}	
+	\subsection{Authentisierung}
 	
 	
-	\rule{\textwidth}{.5mm}
+	\subsection{Autorisierung}
 	
 	
+	\chapter{Fehlermodelle}
+	Sowohl System externe als auch interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger Anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente könnten sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen System-Komponenten.
 	
-	\vfill
-	
-	
-	
-	\par
-	
-	{\bfseries\large Julian Fuchs, Marius Bröcker, Sebastian Wallat}\par
-	
-	\today
-	
-	
-	
-	\vfill
-	
-	
-	
-	\small{%
-		
-		\begin{tabularx}{\textwidth}{@{}lX@{}}
-			
+	\section{Anforderungen}
+	Ausfälle und Störungen eines Teilsystems gänzlich vorzubeugen ist sehr schwer -- wenn nicht unmöglich. Ein zentrales Ziel muss daher sein, ein verteilten Systems so aufzubauen, dass es eine gewissen Fehlertoleranz besitzt. Die Fehlertoleranz beschreibt die Eigenschaft eines Systems 
+	\begin{table}[h]
+		\centering
+		%	\resizebox{\textwidth}{!}
+		\begin{tabular}[h]{ll}
 			\toprule
-			
-			
-			Bearbeitungszeitraum: & 24.10.2020-27.11.2020\\
-			
-			Matrikelnummer, Kurs: & 1708267, TINF18-IT1\\
-			
-			Vorlesung: & Verteilte Systeme \\
-			
-		\end{tabularx}
-		
-	}
+			Anforderung 		& Beschreibung \\
+			\midrule
+			Fehlererkennung		& Um fehlertolerant zu sein, muss ein System Ausfälle\\
+			& erkennen und auf diese reagieren können \vspace{4pt} \\
+			Verfügbarkeit 		& Das System und dessen Dienste sind stets verfügbar \\
+			& und erreichbar \vspace{4pt}\\
+			Zuverlässigkeit		& Ein System wird durchgehend fehlerfrei ausgeführt  \vspace{4pt} \\
+			Funktionssicherheit	& Störungen im System komprimieren nicht die Sicher-\\
+			& heit von Daten oder führen nicht zu ungewollten \\
+			& Aktionen und Ergebnissen \vspace{4pt}\\
+			Wartbarkeit 		& Beschreibt den Aufwand der Wartung eines Systems\\		
+			\bottomrule
+		\end{tabular}
+		%	}
+		\captionsetup{font = small}
+		\caption{Anforderungen an ein System, um fehlertolerant zu sein 
+			\textcolor{red}{(soll Tabelle bestehen bleiben oder in Klartext umgewandelt werden?)}}
+		\label{tbl:fehlertoleranz}
+	\end{table}
+	bei Störungen eine korrekte Funktionsweise aufrecht zuhalten, ohne schwerwiegende Leistungsminderungen einbüßen zu müssen. Um dieses Ziel gewährleisten zu können, muss ein verteiltes System mehrere Anforderungen erfüllen. Zu diesen zählen die Fähigkeiten des Systems einen Fehler zu erkennen, eine konstante Verfügbarkeit dieses, eine gewisse Zuverlässigkeit und Funktionssicherheit des Systems. Zuletzt spielt die Wartbarkeit eines solchen Systems ohne Unterbrechungen eine wichtige Rolle, damit ein System fehlertolerant und verlässlich sein kann. Die Anforderungen sind in \autoref{tbl:fehlertoleranz} erneut aufgeführt und erläutert \cite{vS-TU-Braunschweig}. 
 	
-	\cleardoublepage
+	\section{Arten von Fehlern und Störungen}
+	Prinzipiell lassen sich die Störung, die ein verteiltes Systems erfahren kann, in fünf verschiedene Ausfallarten unterteilen: Absturz, Dienstausfall, zeitbedingter Ausfall, Antwortfehler und byzantinischer Ausfall \cite{vS-Dillinger}\cite{vS-TU-Braunschweig}.
+	\begin{itemize}
+		\item Beim \textit{Absturz(-Ausfall)} stoppt die Ausführung des Systems. Bis zum entsprechenden Zeitpunkt hat dieses jedoch korrekt gearbeitet. %Es muss neu aufgesetzt bzw. initialisiert werden, damit Dienste wiederaufgenommen werden können.
+		\item Im Falle des \textit{Dienstausfalls} reagiert ein Dienst nicht auf eingehende Befehle. Es wird dabei unterschieden, ob das System keine eingehende Anforderung erhält (Empfangsausfall) oder keine Antwort aussendet (Sendeauslassung).
+		\item Von einem \textit{zeitbedingten Ausfall} ist die Rede wenn ein System -- auch Server -- nicht im gegebenen Zeitintervall antwortet.
+		\item Beim \textit{Antwortfehler} ist die gesendete Antwort falsch. Es wird dabei unterschieden zwischen Wertfehlern (Der Wert der Antwort ist falsch) und Zustandsübergangsfehler, in dem das System vom Programmablauf abweicht.
+		\item Zuletzt beschreibt ein \textit{byzantinischer (zufälliger) Ausfall} den Fall, wenn ein System beliebige Antworten zu beliebigen Zeiten versendet.
+	\end{itemize}
+	Ferner lässt eine Störung, die einen solchen Ausfall verursachen kann, anhand einer zeitlichen Komponente einordnen. Dabei wird zwischen transiente, sich wiederholende und permanente Fehler unterschieden \cite{vS-Dillinger}.\\
+	Transiente Fehler beschreiben dabei einmalig auftretende Störungen. Da diese oft nur unter einzigartigen oder sehr bestimmten Voraussetzungen eintreten, sind solche Fehler oft schwer vorherzusagen. Wiederholende Fehler treten periodisch oder bei bestimmten Voraussetzungen auf, die regelmäßig erfüllt werden. Permanente Fehler beschreiben Störungen, die nach Eintritt bestehen bleiben. In der Regel muss die betroffene Komponente repariert bzw. ersetzt wird.
 	
-\end{titlepage}
-
-
-\newpage
-\pagenumbering{Roman}
-
-\chapter*{Eidesstattliche Erklärung}
-%%\thispagestyle{empty}
-\vspace{50pt}
-Wir versichern hiermit, dass wir diese Hausarbeit mit dem Thema: ''Sicherheit und Fehlermodelle von verteilten Systemen'' selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt haben.
-\\
-\\
-
-\vfill
-\noindent\rule{5cm}{.4pt}\hfill\rule{5cm}{.4pt}\par
-\noindent Datum, Ort \hfill Unterschrift 
-
-\newpage
-\thispagestyle{empty}
-\chapter*{Zusammenfassung}
-
-Thema
-\\
-\bigskip
-
-\tableofcontents
-\addtocontents{toc}{}
-
-\listoffigures
-\addcontentsline{toc}{chapter}{Abbildungsverzeichnis} 
-%%\thispagestyle{empty}
-
-\newpage
-\chapter*{Abkürzungsverzeichnis}
-\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
-%%\thispagestyle{empty}
-\begin{acronym}[HTTP]
-	\acro{DLR}{\textbf{D}eutsches Zentrum für \textbf{L}uft- und \textbf{R}aumfahrt}
-\end{acronym}
-
-\pagenumbering{arabic}
-
-\chapter{Einführung}
-
-Ein wichtiger Aspekt verteilter Systeme (vS) ist das erhöhte Sicherheits- und Schutzbedürfnis dieser. Dies ergibt sich aus ihrem offenen Aufbau, sowie der netzwerkgestützten Kommunikation zwischen den einzelnen Teilsystemen. Aus diesem Grund besitzen verteilte Systeme eine viel zahl verschiedenster Angriffsvektoren. Besonders im Kontext von kritischer Infrastruktur (KRITIS) und verschiedenen Branchen wie etwa Banken und E-Commerce müssen Sicherheit und Datenschutz als essentielle Bestandteile des Gesamtsysteme angesehen werden.
-\\
-Um eine möglichst große Zahl an möglichen Sicherheitsproblemen zu eliminieren ist es notwendig schon während der ersten Planungsphasen die sicherheitsrelevanten Aspekte mit in die Überlegungen einzubeziehen. So können eventuelle Schwachstellen möglichst früh identifiziert und entsprechende Gegenmaßnamen in das System integriert werden. Wichtig hierbei ist das alle Schutzmaßnamen kontinuierlich im gesamten System implementiert werden, da schon eine einziger Mangel innerhalb einer Komponente zur Kompromittierung des Gesamtsystems führen kann.
-\\
-Um allen Sicherheits- und Datenschutz relevanten Anforderungen modernen IT Systeme zu entsprechen sind eine viel zahl verschiedenster Mechanismen und Sub-Komponenten zu betrachten. Die wichtigsten dieser sollen im weiteren Verlauf dieser Arbeit näher beleuchtet werden, hierzu zählen unter anderem:
-
-\begin{itemize}
-	\item Kryptoverfahren
-	\item Authentisierung
-	\item Autorisierung
-	\item Arten von Fehlern und Störungen, sowie deren korrekte Behandlung
-\end{itemize}
-
-\chapter{Sicherheit}
-
-
-\section{Schutzziele}
-
-An dieser Stelle lohnt es sich kurz auf die Grundlagen der Informationssicherheit IT-Sicherheit einzugehen.
-\\
-\\
-''Als Informationssicherheit bezeichnet man Eigenschaften von informationsverarbeitenden und -lagernden (technischen oder nicht-technischen) Systemen, die die
-Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität sicherstellen.
-Informationssicherheit dient dem Schutz vor Gefahren bzw. Bedrohungen, der Vermeidung von wirtschaftlichen Schäden und der Minimierung von Risiken.''[\cite{ScriptITSicherheit}]
-\\
-''IT-Sicherheit ist ein Teil der Informationssicherheit. In Abgrenzung zur IT-Sicherheit umfasst die
-Informationssicherheit neben der Sicherheit der IT-Systeme und der darin gespeicherten Daten auch noch die Sicherheit von nicht elektronisch verarbeiteten Informationen.''[\cite{ScriptITSicherheit}]
-\\
-\\
-Somit lässt sich festhalten, das die Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität die oberste Priorität aller Sicherheitstechnischen Überlegungen darstellen sollten. Im folgenden sollen diese drei Schutzziele weiter erläutert werden:
-
-\begin{itemize}
-	\item Vertraulichkeit: Verhinderung von jeglichen unautorisierter Informationsgewinn (Abgreifen von vertraulichen Daten)
-	\item Integrität: Verhinderung von unabsichtlicher bzw. unautorisierter Modifizierung von Daten. (Falls eine Datenveränderung nicht komplett unterbunden werden kann, so muss zumindest gewährleistet werden, dass diese vom System bemerkt wird)
-	\item Verfügbarkeit: Es muss verhinder werden, dass autorisierte Subjekte von unautorisierten Zugriffen in der Nutzung ihrer Berechtigungen beeinträchtigt werden.
-\end{itemize}
-
-
-\section{Angriffsvektoren}
-
-Ziel eines möglichen Angreifers ist es, eines der im vorherigen Kapitel erläuterten Schutzziele zu verletzen. Hierbei kann ein bestimmter Angriff (Vektor) durchaus mehrere Schutzziele kompromittieren. Im folgenden sollen einige mögliche Angriffsmöglichkeiten beispielhaft aufgeführt werden.
-
-\begin{itemize}
-	\item Man-in-the-Middle(MITM): Vertraulichkeit
-	\item Trojaner (z.B. Emotet/Trickbot): Integrität
-	\item Denial of Service (Dos/DDos): Verfügbarkeit
-	\item SQL-Injection: Vertraulichkeit, Integrität
-\end{itemize}
-
-
-
-\section{Schutzmaßnahmen}
-
-
-\subsection{Verschlüsselung}
-
-
-\subsection{Authentisierung}
-
-
-\subsection{Autorisierung}
-
-
-\chapter{Fehlermodelle}
-Sowohl System externe als auch interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger Anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente könnten sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen System-Komponenten.
-
-\section{Anforderungen}
-Ausfälle und Störungen eines Teilsystems gänzlich vorzubeugen ist sehr schwer -- wenn nicht unmöglich. Ein zentrales Ziel muss daher sein, ein verteilten Systems so aufzubauen, dass es eine gewissen Fehlertoleranz besitzt. Die Fehlertoleranz beschreibt die Eigenschaft eines Systems 
-\begin{table}[h]
-	\centering
-	%	\resizebox{\textwidth}{!}
-	\begin{tabular}[h]{ll}
-		\toprule
-		Anforderung 		& Beschreibung \\
-		\midrule
-		Fehlererkennung		& Um fehlertolerant zu sein, muss ein System Ausfälle\\
-							& erkennen und auf diese reagieren können \vspace{4pt} \\
-		Verfügbarkeit 		& Das System und dessen Dienste sind stets verfügbar \\
-							& und erreichbar \vspace{4pt}\\
-		Zuverlässigkeit		& Ein System wird durchgehend fehlerfrei ausgeführt  \vspace{4pt} \\
-		Funktionssicherheit	& Störungen im System komprimieren nicht die Sicher-\\
-							& heit von Daten oder führen nicht zu ungewollten \\
-							& Aktionen und Ergebnissen \vspace{4pt}\\
-		Wartbarkeit 		& Beschreibt den Aufwand der Wartung eines Systems\\		
-		\bottomrule
-	\end{tabular}
-	%	}
-	\captionsetup{font = small}
-	\caption{Anforderungen an ein System, um fehlertolerant zu sein 
-		\textcolor{red}{(soll Tabelle bestehen bleiben oder in Klartext umgewandelt werden?)}}
-	\label{tbl:fehlertoleranz}
-\end{table}
-bei Störungen eine korrekte Funktionsweise aufrecht zuhalten, ohne schwerwiegende Leistungsminderungen einbüßen zu müssen. Um dieses Ziel gewährleisten zu können, muss ein verteiltes System mehrere Anforderungen erfüllen. Zu diesen zählen die Fähigkeiten des Systems einen Fehler zu erkennen, eine konstante Verfügbarkeit dieses, eine gewisse Zuverlässigkeit und Funktionssicherheit des Systems. Zuletzt spielt die Wartbarkeit eines solchen Systems ohne Unterbrechungen eine wichtige Rolle, damit ein System fehlertolerant und verlässlich sein kann. Die Anforderungen sind in \autoref{tbl:fehlertoleranz} erneut aufgeführt und erläutert \cite{vS-TU-Braunschweig}. 
-
-\section{Arten von Fehlern und Störungen}
-Prinzipiell lassen sich die Störung, die ein verteiltes Systems erfahren kann, in fünf verschiedene Ausfallarten unterteilen: Absturz, Dienstausfall, zeitbedingter Ausfall, Antwortfehler und byzantinischer Ausfall \cite{vS-Dillinger}\cite{vS-TU-Braunschweig}.
-\begin{itemize}
-	\item Beim \textit{Absturz(-Ausfall)} stoppt die Ausführung des Systems. Bis zum entsprechenden Zeitpunkt hat dieses jedoch korrekt gearbeitet. %Es muss neu aufgesetzt bzw. initialisiert werden, damit Dienste wiederaufgenommen werden können.
-	\item Im Falle des \textit{Dienstausfalls} reagiert ein Dienst nicht auf eingehende Befehle. Es wird dabei unterschieden, ob das System keine eingehende Anforderung erhält (Empfangsausfall) oder keine Antwort aussendet (Sendeauslassung).
-	\item Von einem \textit{zeitbedingten Ausfall} ist die Rede wenn ein System -- auch Server -- nicht im gegebenen Zeitintervall antwortet.
-	\item Beim \textit{Antwortfehler} ist die gesendete Antwort falsch. Es wird dabei unterschieden zwischen Wertfehlern (Der Wert der Antwort ist falsch) und Zustandsübergangsfehler, in dem das System vom Programmablauf abweicht.
-	\item Zuletzt beschreibt ein \textit{byzantinischer (zufälliger) Ausfall} den Fall, wenn ein System beliebige Antworten zu beliebigen Zeiten versendet.
-\end{itemize}
-Ferner lässt eine Störung, die einen solchen Ausfall verursachen kann, anhand einer zeitlichen Komponente einordnen. Dabei wird zwischen transiente, sich wiederholende und permanente Fehler unterschieden \cite{vS-Dillinger}.\\
-Transiente Fehler beschreiben dabei einmalig auftretende Störungen. Da diese oft nur unter einzigartigen oder sehr bestimmten Voraussetzungen eintreten, sind solche Fehler oft schwer vorherzusagen. Wiederholende Fehler treten periodisch oder bei bestimmten Voraussetzungen auf, die regelmäßig erfüllt werden. Permanente Fehler beschreiben Störungen, die nach Eintritt bestehen bleiben. In der Regel muss die betroffene Komponente repariert bzw. ersetzt wird.
-
-
-\section{Fehlerbehebung}
-Verteilte Systeme besitzen durch die dezentrale Natur viele Fehlerquellen. Daher sollte beim Aufbau eines solchen Systems besonderen Wert auf die Fehlertoleranz gelegt werden, um stets eine konsistente Funktionsweise gewährleisten zu können.\\
-Das generell Vorgehen sollte dabei sein den Fehler oder die Störung zu maskieren und vor anderen Komponenten (wie dem Client) zu verbergen. Systemintern kann dann der Ausfall behoben werden -- im Idealfall ohne Beeinträchtigung einer außenstehenden Komponente. Dabei spielt vor allem die Redundanz im System eine wichtige Rolle. Es wird dabei zwischen Informationsredundanz, zeitlicher und physischer Redundanz unterschieden.
-\begin{itemize}
-	\item \textit{Informationsredundanz} beschreibt die Eigenschaft eines Dienstes notwendige Informationen zu übertragen, obwohl Informationsteile auf dem Transportweg verloren gehen. Ein klassisches Beispiel wäre die Verwendung eines geeigneten Kodierungsverfahrens, um Bit-Fehler erkennen und korrigieren zu können (vgl. Hemming-Codes) \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/Hamming-Code)}.
-	\item Bei \textit{zeitlicher Redundanz} kann ein fehlgeschlagener Prozess erneut durchgeführt werden. Ein Beispiel eines solchen Prozesses könnten Transaktionen wie \texttt{PUSH}- und \texttt{GET}-Anfragen an einen \texttt{HTML}-Server sein.
-	\item \textit{Physische Redundanz} zeichnet sich durch zusätzliche, dedizierte Hardware aus. Diese könnte in Form von vollständigen Servern oder einzelnen Komponenten sein, wie zusätzlicher Festplatten, die in einem Verbund -- beispielsweise als \textit{RAID}-System -- geschaltet sind, um eine Ausfallsicherheit zu erhöhen. Mit einem solchen System könnten zudem eine erhöhte Datendurchsatzrate erzielt werden \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/RAID)}.
-\end{itemize}
- \textcolor{red}{- auf Replikation eingehen\\
-- wie können einzelne Ausfallfälle behandelt werden ...}
-
-\newpage
-
-\nocite{*}
-\thispagestyle{headings}
-
-\bibliographystyle{IEEEtr}
-\bibliography{bibo} 
-
+	
+	\section{Fehlerbehebung}
+	Verteilte Systeme besitzen durch die dezentrale Natur viele Fehlerquellen. Daher sollte beim Aufbau eines solchen Systems besonderen Wert auf die Fehlertoleranz gelegt werden, um stets eine konsistente Funktionsweise gewährleisten zu können.\\
+	Das generell Vorgehen sollte dabei sein den Fehler oder die Störung zu maskieren und vor anderen Komponenten (wie dem Client) zu verbergen. Systemintern kann dann der Ausfall behoben werden -- im Idealfall ohne Beeinträchtigung einer außenstehenden Komponente. Dabei spielt vor allem die Redundanz im System eine wichtige Rolle. Es wird dabei zwischen Informationsredundanz, zeitlicher und physischer Redundanz unterschieden.
+	\begin{itemize}
+		\item \textit{Informationsredundanz} beschreibt die Eigenschaft eines Dienstes notwendige Informationen zu übertragen, obwohl Informationsteile auf dem Transportweg verloren gehen. Ein klassisches Beispiel wäre die Verwendung eines geeigneten Kodierungsverfahrens, um Bit-Fehler erkennen und korrigieren zu können (vgl. Hemming-Codes) \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/Hamming-Code)}.
+		\item Bei \textit{zeitlicher Redundanz} kann ein fehlgeschlagener Prozess erneut durchgeführt werden. Ein Beispiel eines solchen Prozesses könnten Transaktionen wie \texttt{PUSH}- und \texttt{GET}-Anfragen an einen \texttt{HTML}-Server sein.
+		\item \textit{Physische Redundanz} zeichnet sich durch zusätzliche, dedizierte Hardware aus. Diese könnte in Form von vollständigen Servern oder einzelnen Komponenten sein, wie zusätzlicher Festplatten, die in einem Verbund -- beispielsweise als \textit{RAID}-System -- geschaltet sind, um eine Ausfallsicherheit zu erhöhen. Mit einem solchen System könnten zudem eine erhöhte Datendurchsatzrate erzielt werden \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/RAID)}.
+	\end{itemize}
+	\textcolor{red}{- auf Replikation eingehen\\
+		- wie können einzelne Ausfallfälle behandelt werden ...}
+	
+	\newpage
+	
+	\nocite{*}
+	\thispagestyle{headings}
+	
+	\bibliographystyle{IEEEtr}
+	\bibliography{bibo} 
+	
 \end{document}
