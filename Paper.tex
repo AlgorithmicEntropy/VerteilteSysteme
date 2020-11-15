@@ -14,6 +14,11 @@
 \usepackage{textcomp}
 \usepackage{caption}
 
+% font coloring
+\usepackage{xcolor}
+% for tables
+\usepackage{multirow}
+
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
 
 \title{Bericht Praxisphase I}
@@ -214,6 +219,8 @@ Ziel eines möglichen Angreifers ist es, eines der im vorherigen Kapitel erläut
 	\item SQL-Injection: Vertraulichkeit, Integrität
 \end{itemize}
 
+
+
 \section{Schutzmaßnahmen}
 
 Um die Schutzziele Vertraulichkeit, Integrität und Verfügbarkeit vor den genannten Angriffen zu bewahren, müssen geeignete Sicherheitsmechanismen bereitgestellt werden. Diese Verfahren basieren grundlegend auf dem Gebiet der Kryptographie.
@@ -255,16 +262,59 @@ Aufgrund von höherer Fehlertoleranz und besserer Performanz wird die Zugriffsma
 Durch Gruppen, eine Zusammenfassung von mehreren Subjekten, und Rollen, eine Kombination von verschiedenen Zugriffsrechten, können die Dimensionen der Zugriffsmatrix deutlich reduziert werden.
 
 \chapter{Fehlermodelle}
-
+Sowohl System externe als auch interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger Anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente könnten sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen System-Komponenten.
 
 \section{Anforderungen}
-
+Ausfälle und Störungen eines Teilsystems gänzlich vorzubeugen ist sehr schwer -- wenn nicht unmöglich. Ein zentrales Ziel muss daher sein, ein verteilten Systems so aufzubauen, dass es eine gewissen Fehlertoleranz besitzt. Die Fehlertoleranz beschreibt die Eigenschaft eines Systems 
+\begin{table}[h]
+	\centering
+	%	\resizebox{\textwidth}{!}
+	\begin{tabular}[h]{ll}
+		\toprule
+		Anforderung 		& Beschreibung \\
+		\midrule
+		Fehlererkennung		& Um fehlertolerant zu sein, muss ein System Ausfälle\\
+							& erkennen und auf diese reagieren können \vspace{4pt} \\
+		Verfügbarkeit 		& Das System und dessen Dienste sind stets verfügbar \\
+							& und erreichbar \vspace{4pt}\\
+		Zuverlässigkeit		& Ein System wird durchgehend fehlerfrei ausgeführt  \vspace{4pt} \\
+		Funktionssicherheit	& Störungen im System komprimieren nicht die Sicher-\\
+							& heit von Daten oder führen nicht zu ungewollten \\
+							& Aktionen und Ergebnissen \vspace{4pt}\\
+		Wartbarkeit 		& Beschreibt den Aufwand der Wartung eines Systems\\		
+		\bottomrule
+	\end{tabular}
+	%	}
+	\captionsetup{font = small}
+	\caption{Anforderungen an ein System, um fehlertolerant zu sein 
+		\textcolor{red}{(soll Tabelle bestehen bleiben oder in Klartext umgewandelt werden?)}}
+	\label{tbl:fehlertoleranz}
+\end{table}
+bei Störungen eine korrekte Funktionsweise aufrecht zuhalten, ohne schwerwiegende Leistungsminderungen einbüßen zu müssen. Um dieses Ziel gewährleisten zu können, muss ein verteiltes System mehrere Anforderungen erfüllen. Zu diesen zählen die Fähigkeiten des Systems einen Fehler zu erkennen, eine konstante Verfügbarkeit dieses, eine gewisse Zuverlässigkeit und Funktionssicherheit des Systems. Zuletzt spielt die Wartbarkeit eines solchen Systems ohne Unterbrechungen eine wichtige Rolle, damit ein System fehlertolerant und verlässlich sein kann. Die Anforderungen sind in \autoref{tbl:fehlertoleranz} erneut aufgeführt und erläutert \cite{vS-TU-Braunschweig}. 
 
 \section{Arten von Fehlern und Störungen}
+Prinzipiell lassen sich die Störung, die ein verteiltes Systems erfahren kann, in fünf verschiedene Ausfallarten unterteilen: Absturz, Dienstausfall, zeitbedingter Ausfall, Antwortfehler und byzantinischer Ausfall \cite{vS-Dillinger}\cite{vS-TU-Braunschweig}.
+\begin{itemize}
+	\item Beim \textit{Absturz(-Ausfall)} stoppt die Ausführung des Systems. Bis zum entsprechenden Zeitpunkt hat dieses jedoch korrekt gearbeitet. %Es muss neu aufgesetzt bzw. initialisiert werden, damit Dienste wiederaufgenommen werden können.
+	\item Im Falle des \textit{Dienstausfalls} reagiert ein Dienst nicht auf eingehende Befehle. Es wird dabei unterschieden, ob das System keine eingehende Anforderung erhält (Empfangsausfall) oder keine Antwort aussendet (Sendeauslassung).
+	\item Von einem \textit{zeitbedingten Ausfall} ist die Rede wenn ein System -- auch Server -- nicht im gegebenen Zeitintervall antwortet.
+	\item Beim \textit{Antwortfehler} ist die gesendete Antwort falsch. Es wird dabei unterschieden zwischen Wertfehlern (Der Wert der Antwort ist falsch) und Zustandsübergangsfehler, in dem das System vom Programmablauf abweicht.
+	\item Zuletzt beschreibt ein \textit{byzantinischer (zufälliger) Ausfall} den Fall, wenn ein System beliebige Antworten zu beliebigen Zeiten versendet.
+\end{itemize}
+Ferner lässt eine Störung, die einen solchen Ausfall verursachen kann, anhand einer zeitlichen Komponente einordnen. Dabei wird zwischen transiente, sich wiederholende und permanente Fehler unterschieden \cite{vS-Dillinger}.\\
+Transiente Fehler beschreiben dabei einmalig auftretende Störungen. Da diese oft nur unter einzigartigen oder sehr bestimmten Voraussetzungen eintreten, sind solche Fehler oft schwer vorherzusagen. Wiederholende Fehler treten periodisch oder bei bestimmten Voraussetzungen auf, die regelmäßig erfüllt werden. Permanente Fehler beschreiben Störungen, die nach Eintritt bestehen bleiben. In der Regel muss die betroffene Komponente repariert bzw. ersetzt wird.
 
 
 \section{Fehlerbehebung}
-
+Verteilte Systeme besitzen durch die dezentrale Natur viele Fehlerquellen. Daher sollte beim Aufbau eines solchen Systems besonderen Wert auf die Fehlertoleranz gelegt werden, um stets eine konsistente Funktionsweise gewährleisten zu können.\\
+Das generell Vorgehen sollte dabei sein den Fehler oder die Störung zu maskieren und vor anderen Komponenten (wie dem Client) zu verbergen. Systemintern kann dann der Ausfall behoben werden -- im Idealfall ohne Beeinträchtigung einer außenstehenden Komponente. Dabei spielt vor allem die Redundanz im System eine wichtige Rolle. Es wird dabei zwischen Informationsredundanz, zeitlicher und physischer Redundanz unterschieden.
+\begin{itemize}
+	\item \textit{Informationsredundanz} beschreibt die Eigenschaft eines Dienstes notwendige Informationen zu übertragen, obwohl Informationsteile auf dem Transportweg verloren gehen. Ein klassisches Beispiel wäre die Verwendung eines geeigneten Kodierungsverfahrens, um Bit-Fehler erkennen und korrigieren zu können (vgl. Hemming-Codes) \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/Hamming-Code)}.
+	\item Bei \textit{zeitlicher Redundanz} kann ein fehlgeschlagener Prozess erneut durchgeführt werden. Ein Beispiel eines solchen Prozesses könnten Transaktionen wie \texttt{PUSH}- und \texttt{GET}-Anfragen an einen \texttt{HTML}-Server sein.
+	\item \textit{Physische Redundanz} zeichnet sich durch zusätzliche, dedizierte Hardware aus. Diese könnte in Form von vollständigen Servern oder einzelnen Komponenten sein, wie zusätzlicher Festplatten, die in einem Verbund -- beispielsweise als \textit{RAID}-System -- geschaltet sind, um eine Ausfallsicherheit zu erhöhen. Mit einem solchen System könnten zudem eine erhöhte Datendurchsatzrate erzielt werden \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/RAID)}.
+\end{itemize}
+ \textcolor{red}{- auf Replikation eingehen\\
+- wie können einzelne Ausfallfälle behandelt werden ...}
 
 \newpage
 
