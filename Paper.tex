@@ -75,7 +75,7 @@
 	\end{titlepage}
 	
 	\newpage
-	\pagenumbering{Roman}
+	\pagenumbering{gobble}
 	
 	\chapter*{Eidesstattliche Erklärung}
 
@@ -93,9 +93,8 @@
 	\tableofcontents
 	\addtocontents{toc}{}
 	
-	\pagenumbering{arabic}
-	
 	\chapter{Einführung}
+		\pagenumbering{arabic}
 		
 		Ein wichtiger Aspekt verteilter Systeme (vS) ist das erhöhte Sicherheits- und Schutzbedürfnis dieser. Dieses ergibt sich aus ihrem offenen Aufbau, sowie der netzwerkgestützten Kommunikation zwischen den einzelnen Teilsystemen. Aus diesem Grund besitzen verteilte Systeme eine Vielzahl verschiedenster Angriffsvektoren. Besonders im Kontext von kritischer Infrastruktur (KRITIS) und verschiedenen Branchen, wie etwa Banken und E-Commerce, müssen Sicherheit und Datenschutz als essenzielle Bestandteile des Gesamtsystems angesehen werden. \\
 		Um eine möglichst große Anzahl an möglichen Sicherheitsproblemen zu eliminieren, ist es notwendig schon während der ersten Planungsphasen die sicherheitsrelevanten Aspekte mit in die Überlegungen einzubeziehen. So können eventuelle Schwachstellen möglichst früh identifiziert und entsprechende Gegenmaßnamen in das System integriert werden. Wichtig hierbei ist, dass alle Schutzmaßnamen kontinuierlich im gesamten System implementiert werden, da schon eine einziger Mangel innerhalb einer Komponente zur Kompromittierung des Gesamtsystems führen kann. \\
@@ -236,6 +235,7 @@
 			\end{itemize}
 			
 	\newpage
+	\pagenumbering{gobble}
 	
 	\nocite{*}
 	\thispagestyle{headings}
