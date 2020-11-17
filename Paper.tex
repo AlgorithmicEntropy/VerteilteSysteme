@@ -116,7 +116,7 @@
 			
 			Bearbeitungszeitraum: & 24.10.2020-27.11.2020\\
 			
-			Matrikelnummer, Kurs: & 1708267, TINF18-IT1\\
+			Matrikelnummer, Kurs: & 7087727, ..., 1708267, TINF18-IT1\\
 			
 			Vorlesung: & Verteilte Systeme \\
 			
@@ -158,23 +158,15 @@ Thema
 \addcontentsline{toc}{chapter}{Abbildungsverzeichnis} 
 %%\thispagestyle{empty}
 
-\newpage
-\chapter*{Abkürzungsverzeichnis}
-\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
-%%\thispagestyle{empty}
-\begin{acronym}[HTTP]
-	\acro{DLR}{\textbf{D}eutsches Zentrum für \textbf{L}uft- und \textbf{R}aumfahrt}
-\end{acronym}
-
 \pagenumbering{arabic}
 
 \chapter{Einführung}
 
-Ein wichtiger Aspekt verteilter Systeme (vS) ist das erhöhte Sicherheits- und Schutzbedürfnis dieser. Dies ergibt sich aus ihrem offenen Aufbau, sowie der netzwerkgestützten Kommunikation zwischen den einzelnen Teilsystemen. Aus diesem Grund besitzen verteilte Systeme eine viel zahl verschiedenster Angriffsvektoren. Besonders im Kontext von kritischer Infrastruktur (KRITIS) und verschiedenen Branchen wie etwa Banken und E-Commerce müssen Sicherheit und Datenschutz als essentielle Bestandteile des Gesamtsysteme angesehen werden.
+Ein wichtiger Aspekt verteilter Systeme (vS) ist das erhöhte Sicherheits- und Schutzbedürfnis dieser. Dies ergibt sich aus ihrem offenen Aufbau, sowie der netzwerkgestützten Kommunikation zwischen den einzelnen Teilsystemen. Aus diesem Grund besitzen verteilte Systeme eine Vielzahl verschiedenster Angriffsvektoren. Besonders im Kontext von kritischer Infrastruktur (KRITIS) und verschiedenen Branchen wie etwa Banken und E-Commerce müssen Sicherheit und Datenschutz als essenzielle Bestandteile des Gesamtsysteme angesehen werden.
 \\
-Um eine möglichst große Zahl an möglichen Sicherheitsproblemen zu eliminieren ist es notwendig schon während der ersten Planungsphasen die sicherheitsrelevanten Aspekte mit in die Überlegungen einzubeziehen. So können eventuelle Schwachstellen möglichst früh identifiziert und entsprechende Gegenmaßnamen in das System integriert werden. Wichtig hierbei ist das alle Schutzmaßnamen kontinuierlich im gesamten System implementiert werden, da schon eine einziger Mangel innerhalb einer Komponente zur Kompromittierung des Gesamtsystems führen kann.
+Um eine möglichst große Anzahl an möglichen Sicherheitsproblemen zu eliminieren, ist es notwendig schon während der ersten Planungsphasen die sicherheitsrelevanten Aspekte mit in die Überlegungen einzubeziehen. So können eventuelle Schwachstellen möglichst früh identifiziert und entsprechende Gegenmaßnamen in das System integriert werden. Wichtig hierbei ist, dass alle Schutzmaßnamen kontinuierlich im gesamten System implementiert werden, da schon eine einziger Mangel innerhalb einer Komponente zur Kompromittierung des Gesamtsystems führen kann.
 \\
-Um allen Sicherheits- und Datenschutz relevanten Anforderungen modernen IT Systeme zu entsprechen sind eine viel zahl verschiedenster Mechanismen und Sub-Komponenten zu betrachten. Die wichtigsten dieser sollen im weiteren Verlauf dieser Arbeit näher beleuchtet werden, hierzu zählen unter anderem:
+Um allen sicherheits- und datenschutzrelevanten Anforderungen moderner IT-Systeme zu entsprechen, sind eine Vielzahl verschiedenster Mechanismen und Sub-Komponenten zu betrachten. Die wichtigsten dieser sollen im weiteren Verlauf dieser Arbeit näher beleuchtet werden, hierzu zählen unter anderem:
 
 \begin{itemize}
 	\item Kryptoverfahren
@@ -188,29 +180,29 @@ Um allen Sicherheits- und Datenschutz relevanten Anforderungen modernen IT Syste
 
 \section{Schutzziele}
 
-An dieser Stelle lohnt es sich kurz auf die Grundlagen der Informationssicherheit IT-Sicherheit einzugehen.
+An dieser Stelle lohnt es sich kurz auf die Grundlagen der IT-Sicherheit einzugehen:
 \\
 \\
 ''Als Informationssicherheit bezeichnet man Eigenschaften von informationsverarbeitenden und -lagernden (technischen oder nicht-technischen) Systemen, die die
 Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität sicherstellen.
 Informationssicherheit dient dem Schutz vor Gefahren bzw. Bedrohungen, der Vermeidung von wirtschaftlichen Schäden und der Minimierung von Risiken.''[\cite{ScriptITSicherheit}]
-\\
+
 ''IT-Sicherheit ist ein Teil der Informationssicherheit. In Abgrenzung zur IT-Sicherheit umfasst die
 Informationssicherheit neben der Sicherheit der IT-Systeme und der darin gespeicherten Daten auch noch die Sicherheit von nicht elektronisch verarbeiteten Informationen.''[\cite{ScriptITSicherheit}]
 \\
 \\
-Somit lässt sich festhalten, das die Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität die oberste Priorität aller Sicherheitstechnischen Überlegungen darstellen sollten. Im folgenden sollen diese drei Schutzziele weiter erläutert werden:
+Somit lässt sich festhalten, dass die Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität die oberste Priorität aller sicherheitstechnischen Überlegungen darstellen sollten. Im folgenden sollen diese drei Schutzziele weiter erläutert werden:
 
 \begin{itemize}
-	\item Vertraulichkeit: Verhinderung von jeglichen unautorisierter Informationsgewinn (Abgreifen von vertraulichen Daten)
-	\item Integrität: Verhinderung von unabsichtlicher bzw. unautorisierter Modifizierung von Daten. (Falls eine Datenveränderung nicht komplett unterbunden werden kann, so muss zumindest gewährleistet werden, dass diese vom System bemerkt wird)
-	\item Verfügbarkeit: Es muss verhinder werden, dass autorisierte Subjekte von unautorisierten Zugriffen in der Nutzung ihrer Berechtigungen beeinträchtigt werden.
+	\item Vertraulichkeit: Verhinderung von jeglichem unautorisierten Informationsgewinn (Abgreifen von vertraulichen Daten)
+	\item Integrität: Verhinderung von unabsichtlicher bzw. unautorisierter Modifizierung von Daten (falls eine Datenveränderung nicht komplett unterbunden werden kann, so muss zumindest gewährleistet werden, dass diese vom System bemerkt wird)
+	\item Verfügbarkeit: Es muss verhindert werden, dass autorisierte Subjekte von unautorisierten Zugriffen in der Nutzung ihrer Berechtigungen beeinträchtigt werden
 \end{itemize}
 
 
 \section{Angriffsvektoren}
 
-Ziel eines möglichen Angreifers ist es, eines der im vorherigen Kapitel erläuterten Schutzziele zu verletzen. Hierbei kann ein bestimmter Angriff (Vektor) durchaus mehrere Schutzziele kompromittieren. Im folgenden sollen einige mögliche Angriffsmöglichkeiten beispielhaft aufgeführt werden.
+Ziel eines möglichen Angreifers ist es, eines der, im vorherigen Kapitel erläuterten, Schutzziele zu verletzen. Hierbei kann ein bestimmter Angriff (Vektor) durchaus mehrere Schutzziele kompromittieren. Im folgenden sollen einige mögliche Angriffsmöglichkeiten beispielhaft aufgeführt werden.
 
 \begin{itemize}
 	\item Man-in-the-Middle(MITM): Vertraulichkeit
@@ -262,7 +254,7 @@ Aufgrund von höherer Fehlertoleranz und besserer Performanz wird die Zugriffsma
 Durch Gruppen, eine Zusammenfassung von mehreren Subjekten, und Rollen, eine Kombination von verschiedenen Zugriffsrechten, können die Dimensionen der Zugriffsmatrix deutlich reduziert werden.
 
 \chapter{Fehlermodelle}
-Sowohl System externe als auch interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger Anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente könnten sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen System-Komponenten.
+Sowohl System externe als auch interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente könnten sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen System-Komponenten.
 
 \section{Anforderungen}
 Ausfälle und Störungen eines Teilsystems gänzlich vorzubeugen ist sehr schwer -- wenn nicht unmöglich. Ein zentrales Ziel muss daher sein, ein verteilten Systems so aufzubauen, dass es eine gewissen Fehlertoleranz besitzt. Die Fehlertoleranz beschreibt die Eigenschaft eines Systems 
