@@ -2,318 +2,245 @@
 
 \documentclass[12pt,a4paper,parskip=half]{scrreprt}
 
-\usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
 \usepackage{acronym}
-\usepackage{graphicx}
-\usepackage[below]{placeins}
-\usepackage{url}
-\usepackage{hyperref}
-\usepackage{tabularx}
+\usepackage[export]{adjustbox}
+\usepackage[ngerman]{babel}
 \usepackage{booktabs}
-\usepackage{textcomp}
 \usepackage{caption}
-
-% font coloring
-\usepackage{xcolor}
-% for tables
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
 \usepackage{multirow}
+\usepackage[below]{placeins}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{xcolor}
 
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
 
-\title{Bericht Praxisphase I}
-\author{Sebastian Wallat}
-\date{\today}
+\addto\captionsgerman{\renewcommand{\contentsname}{Inhaltsverzeichnis}}
 
-\clubpenalty = 10000 % schliesst Schusterjungen aus
-\widowpenalty = 10000 % schliesst Hurenkinder aus
+\clubpenalty = 10000
+\widowpenalty = 10000
 
 \graphicspath{{./images/}}
 
 \begin{document}
-
-\begin{titlepage}
 	
-	\centering
-	
-%%	\ifcsempty{iodhbwm@institute@logo}{%
+	\begin{titlepage}
 		
-%%		\includegraphics[height=1.5cm]{dhbw-logo}
+		\centering
+				
+		\begin{figure}
+			\raggedright
+			\includegraphics[width = .25\textwidth, right]{dhbw-logo}
+		\end{figure}
 		
-	{%
+		\bigskip
 		
-		\begin{minipage}[c]{.25\textwidth}
-			
-			\includegraphics[width=\textwidth, height = 2cm]{dhbw-logo}
-			
-		\end{minipage}
-		\begin{minipage}[c]{0.46\textwidth}
-			
-			\includegraphics[width=\textwidth]{empty}
-			
-		\end{minipage}
-		\begin{minipage}[c]{.25\textwidth}
-			
-			\raggedleft
-			
-			\includegraphics[width=\textwidth, height =2cm, keepaspectratio]{dlr-logo}
-			
-		\end{minipage}
+		\Large\textsc{Hausarbeit}
 		
-	}
-	
-	
-	
-	\bigskip
-	
-	
-	
-	\Large\textsc{Hausarbeit}
-	
-	
-	
-	\normalsize
-	
-	des Studiengangs Informationstechnik\par
-	
-	der Dualen Hochschule Baden-Württemberg Mannheim
-	
-	
-	
-	\rule{\textwidth}{.5mm}\bigskip
-	
-	
-	
-	\textsc{\large Sicherheit und Fehlermodelle von verteilten Systemen}	
-	
-	
-	\rule{\textwidth}{.5mm}
-	
-	
-	
-	\vfill
-	
-	
-	
-	\par
-	
-	{\bfseries\large Julian Fuchs, Marius Bröcker, Sebastian Wallat}\par
-	
-	\today
-	
-	
-	
-	\vfill
-	
-	
-	
-	\small{%
+		\normalsize
 		
-		\begin{tabularx}{\textwidth}{@{}lX@{}}
-			
-			\toprule
-			
-			
-			Bearbeitungszeitraum: & 24.10.2020-27.11.2020\\
-			
-			Matrikelnummer, Kurs: & 7087727, ..., 1708267, TINF18-IT1\\
-			
-			Vorlesung: & Verteilte Systeme \\
-			
-		\end{tabularx}
+		des Studiengangs Informationstechnik \par
+		der Dualen Hochschule Baden-Württemberg Mannheim
 		
-	}
+		\rule{\textwidth}{.5mm}\bigskip
+		
+		\textsc{\large Sicherheit und Fehlermodelle von verteilten Systemen}	
+		
+		\rule{\textwidth}{.5mm}
+		
+		\vfill
+		
+		\par
+		
+		{\bfseries\large Julian Fuchs, Marius Bröcker, Sebastian Wallat} \par
+		\today
+		
+		\vfill
+		
+		\small{%
+			\begin{tabularx}{\textwidth}{@{}lX@{}}
+				\toprule
+				Bearbeitungszeitraum: & 24.10.2020 - 27.11.2020 \\
+				Matrikelnummern, Kurs: & 7087727, 2686300, 1708267; TINF18-IT1 \\
+				Vorlesung: & Verteilte Systeme \\
+			\end{tabularx}
+		}
+		
+		\cleardoublepage
+		
+	\end{titlepage}
 	
-	\cleardoublepage
+	\newpage
+	\pagenumbering{Roman}
 	
-\end{titlepage}
+	\chapter*{Eidesstattliche Erklärung}
 
-
-\newpage
-\pagenumbering{Roman}
-
-\chapter*{Eidesstattliche Erklärung}
-%%\thispagestyle{empty}
-\vspace{50pt}
-Wir versichern hiermit, dass wir diese Hausarbeit mit dem Thema: ''Sicherheit und Fehlermodelle von verteilten Systemen'' selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt haben.
-\\
-\\
-
-\vfill
-\noindent\rule{5cm}{.4pt}\hfill\rule{5cm}{.4pt}\par
-\noindent Datum, Ort \hfill Unterschrift 
-
-\newpage
-\thispagestyle{empty}
-\chapter*{Zusammenfassung}
-
-Thema
-\\
-\bigskip
-
-\tableofcontents
-\addtocontents{toc}{}
-
-\listoffigures
-\addcontentsline{toc}{chapter}{Abbildungsverzeichnis} 
-%%\thispagestyle{empty}
-
-\pagenumbering{arabic}
-
-\chapter{Einführung}
-
-Ein wichtiger Aspekt verteilter Systeme (vS) ist das erhöhte Sicherheits- und Schutzbedürfnis dieser. Dies ergibt sich aus ihrem offenen Aufbau, sowie der netzwerkgestützten Kommunikation zwischen den einzelnen Teilsystemen. Aus diesem Grund besitzen verteilte Systeme eine Vielzahl verschiedenster Angriffsvektoren. Besonders im Kontext von kritischer Infrastruktur (KRITIS) und verschiedenen Branchen wie etwa Banken und E-Commerce müssen Sicherheit und Datenschutz als essenzielle Bestandteile des Gesamtsysteme angesehen werden.
-\\
-Um eine möglichst große Anzahl an möglichen Sicherheitsproblemen zu eliminieren, ist es notwendig schon während der ersten Planungsphasen die sicherheitsrelevanten Aspekte mit in die Überlegungen einzubeziehen. So können eventuelle Schwachstellen möglichst früh identifiziert und entsprechende Gegenmaßnamen in das System integriert werden. Wichtig hierbei ist, dass alle Schutzmaßnamen kontinuierlich im gesamten System implementiert werden, da schon eine einziger Mangel innerhalb einer Komponente zur Kompromittierung des Gesamtsystems führen kann.
-\\
-Um allen sicherheits- und datenschutzrelevanten Anforderungen moderner IT-Systeme zu entsprechen, sind eine Vielzahl verschiedenster Mechanismen und Sub-Komponenten zu betrachten. Die wichtigsten dieser sollen im weiteren Verlauf dieser Arbeit näher beleuchtet werden, hierzu zählen unter anderem:
-
-\begin{itemize}
-	\item Kryptoverfahren
-	\item Authentisierung
-	\item Autorisierung
-	\item Arten von Fehlern und Störungen, sowie deren korrekte Behandlung
-\end{itemize}
-
-\chapter{Sicherheit}
-
-
-\section{Schutzziele}
-
-An dieser Stelle lohnt es sich kurz auf die Grundlagen der IT-Sicherheit einzugehen:
-\\
-\\
-''Als Informationssicherheit bezeichnet man Eigenschaften von informationsverarbeitenden und -lagernden (technischen oder nicht-technischen) Systemen, die die
-Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität sicherstellen.
-Informationssicherheit dient dem Schutz vor Gefahren bzw. Bedrohungen, der Vermeidung von wirtschaftlichen Schäden und der Minimierung von Risiken.''[\cite{ScriptITSicherheit}]
-
-''IT-Sicherheit ist ein Teil der Informationssicherheit. In Abgrenzung zur IT-Sicherheit umfasst die
-Informationssicherheit neben der Sicherheit der IT-Systeme und der darin gespeicherten Daten auch noch die Sicherheit von nicht elektronisch verarbeiteten Informationen.''[\cite{ScriptITSicherheit}]
-\\
-\\
-Somit lässt sich festhalten, dass die Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität die oberste Priorität aller sicherheitstechnischen Überlegungen darstellen sollten. Im folgenden sollen diese drei Schutzziele weiter erläutert werden:
-
-\begin{itemize}
-	\item Vertraulichkeit: Verhinderung von jeglichem unautorisierten Informationsgewinn (Abgreifen von vertraulichen Daten)
-	\item Integrität: Verhinderung von unabsichtlicher bzw. unautorisierter Modifizierung von Daten (falls eine Datenveränderung nicht komplett unterbunden werden kann, so muss zumindest gewährleistet werden, dass diese vom System bemerkt wird)
-	\item Verfügbarkeit: Es muss verhindert werden, dass autorisierte Subjekte von unautorisierten Zugriffen in der Nutzung ihrer Berechtigungen beeinträchtigt werden
-\end{itemize}
-
-
-\section{Angriffsvektoren}
-
-Ziel eines möglichen Angreifers ist es, eines der, im vorherigen Kapitel erläuterten, Schutzziele zu verletzen. Hierbei kann ein bestimmter Angriff (Vektor) durchaus mehrere Schutzziele kompromittieren. Im folgenden sollen einige mögliche Angriffsmöglichkeiten beispielhaft aufgeführt werden.
-
-\begin{itemize}
-	\item Man-in-the-Middle(MITM): Vertraulichkeit
-	\item Trojaner (z.B. Emotet/Trickbot): Integrität
-	\item Denial of Service (Dos/DDos): Verfügbarkeit
-	\item SQL-Injection: Vertraulichkeit, Integrität
-\end{itemize}
-
-
-
-\section{Schutzmaßnahmen}
-
-Um die Schutzziele Vertraulichkeit, Integrität und Verfügbarkeit vor den genannten Angriffen zu bewahren, müssen geeignete Sicherheitsmechanismen bereitgestellt werden. Diese Verfahren basieren grundlegend auf dem Gebiet der Kryptographie.
-
-\subsection{Verschlüsselung}
-
-Damit die Vertraulichkeit bei der Kommunikation von verteilten Systemen gewährleistet werden kann, muss die ursprünglich im Klartext enthaltene Nachricht durch Anwendung kryptographischer Algorithmen verschlüsselt werden. Eine Verschlüsselung der Daten erfolgt hierbei beim Sender und eine Entschlüsselung beim Empfänger. \\
-Um die Verschlüsselung zu gewährleisten muss weiterhin sichergestellt werden, dass die Schlüssel (auch bei einer Übertragung) geheim bleiben.
-
-Die Verschlüsselung kann in drei grundlegenden Klassen eingeteilt werden:
-\begin{itemize}
-	\item Symmetrische Verfahren: ein gemeinsamer Schlüssel zur Ver- und Entschlüsselung
-	\item Asymmetrische Verfahren: zwei unterschiedliche Schlüssel, unterteilt in einen öffentlichen zur Verschlüsselung und einen privaten zur Entschlüsselung
-	\item Kombinierte Verfahren / Hybridverfahren: Zusammensetzung der beiden genannten Verfahren
-\end{itemize}
-
-Der Vorteil der asymmetrischen Verfahren im Gegensatz zu den symmetrischen ist, dass ein öffentlicher Austausch des Schlüssels erfolgen kann, ohne dass die Vertraulichkeit der Information gefährdet wird. Durch die hohe Komplexität der Berechnungsvorschrift für das Schlüsselpaar ist die Performanz jedoch schlechter als bei der symmetrischen Verschlüsselung.
-
-Standardmäßig eingesetzte symmetrische Verschlüsselungsalgorithmen sind das nicht mehr sichere DES (\textit{Data Encryption Standard}) und dessen Erweiterung Triple-DES, sowie AES (\textit{Advanced Encryption Standard}). Das erste veröffentlichte asymmetrische Verschlüsselungsverfahren und bekannteste Beispiel dafür ist RSA.
-
-\subsection{Authentisierung}
-
-Über eine Authentisierung wird gewährleistet, dass die Identität der Systeme, mit denen kommuniziert wird, korrekt ist. Diese Maßnahme dient sowohl zum Schutz der Vertraulichkeit als auch der Integrität.
-
-Ebenso wie bei der Verschlüsselung werden bei der Authentisierung sowohl symmetrische als auch asymmetrische Verschlüsselungsverfahren eingesetzt.
-
-Bei dem symmetrischen Verfahren agiert eine Schlüsselvergabestelle als zentrale Instanz zur Authentisierung. Aufgrund der Relevanz muss diese gegen Ein- und Angriffe besonders gut geschützt und in einem sicheren Bereich des Servers lokalisiert sein. \\
-Sobald ein Client eine Anfrage mit den eindeutigen Identifikatoren von ihm und des Servers sendet, generiert die Vergabestelle eine \textit{Challenge}, häufig eine zufällige Zahl. Diese muss der Client daraufhin mit dem gemeinsamen Schlüssel verschlüsselt zurücksenden und nach der Entschlüsselung kann die Vergabestelle wiederum überprüfen ob die \textit{Challenge} absolviert wurde, indem die Zahl korrekt verschlüsselt wurde.
-
-Das asymmetrische Verfahren basiert hingegen auf zwei \textit{Challenges}, die einerseits vom Server und andererseits vom Client gelöst werden müssen. Der Client sendet hierbei in seiner Anfrage, die über den öffentlichen Schlüssel des Servers verschlüsselt wird, neben seinem Identifikator eine zufällige Zahl. Der Server kann diese anschließend entschlüsseln und generiert eine weitere zufällige Zahl und einen Konversationsschlüssel und sendet diese zusammen mit dem Ergebnis aus der ersten \textit{Challenge} verschlüsselt mit dem öffentlichen Schlüssel des Clients zurück. Dieser kann die Nachricht nun entschlüsseln und überprüfen ob der Server die \textit{Challenge} absolviert und somit seine Identität bestätigt hat. Letztendlich wird die Zufallszahl des Servers, verschlüsselt mit dem Konversationsschlüssel, an den Server zurückgesendet und dieser validiert daraufhin, dass der Client die korrekte Zahl gesendet hat und somit die zweite \textit{Challenge} gelöst hat.
-
-\subsection{Autorisierung}
-
-Mit Autorisierung wird die Überprüfung von festgelegten Zugriffsrechten von authentisierten Identitäten bezeichnet. 
-
-Zur Darstellung der Zugriffsrechte wird im Allgemeinen eine Zugriffsmatrix verwendet. In dieser sind in den Spalten die Identitäten, Subjekte genannt, und in den Zeilen die Dienste und Ressourcen, Objekte genannt, abgebildet. In den einzelnen Zellen sind jeweils die Operationen (z. B. lesen, schreiben, ausführen) zugeordnet. \\
-Aufgrund von höherer Fehlertoleranz und besserer Performanz wird die Zugriffsmatrix dezentral hinterlegt. Dabei gibt es grundsätzlich zwei Ansätze: entweder werden die Zeilen, sogenannte Zugriffskontrolllisten, für die einzelnen Objekte abgespeichert oder die Spalten, in dem Fall als Berechtigungen bezeichnet, werden für jedes Subjekt abgelegt.
-
-Durch Gruppen, eine Zusammenfassung von mehreren Subjekten, und Rollen, eine Kombination von verschiedenen Zugriffsrechten, können die Dimensionen der Zugriffsmatrix deutlich reduziert werden.
-
-\chapter{Fehlermodelle}
-Sowohl System externe als auch interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems komprimieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme zählen. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente könnten sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen System-Komponenten.
-
-\section{Anforderungen}
-Ausfälle und Störungen eines Teilsystems gänzlich vorzubeugen ist sehr schwer -- wenn nicht unmöglich. Ein zentrales Ziel muss daher sein, ein verteilten Systems so aufzubauen, dass es eine gewissen Fehlertoleranz besitzt. Die Fehlertoleranz beschreibt die Eigenschaft eines Systems 
-\begin{table}[h]
-	\centering
-	%	\resizebox{\textwidth}{!}
-	\begin{tabular}[h]{ll}
-		\toprule
-		Anforderung 		& Beschreibung \\
-		\midrule
-		Fehlererkennung		& Um fehlertolerant zu sein, muss ein System Ausfälle\\
-							& erkennen und auf diese reagieren können \vspace{4pt} \\
-		Verfügbarkeit 		& Das System und dessen Dienste sind stets verfügbar \\
-							& und erreichbar \vspace{4pt}\\
-		Zuverlässigkeit		& Ein System wird durchgehend fehlerfrei ausgeführt  \vspace{4pt} \\
-		Funktionssicherheit	& Störungen im System komprimieren nicht die Sicher-\\
-							& heit von Daten oder führen nicht zu ungewollten \\
-							& Aktionen und Ergebnissen \vspace{4pt}\\
-		Wartbarkeit 		& Beschreibt den Aufwand der Wartung eines Systems\\		
-		\bottomrule
-	\end{tabular}
-	%	}
-	\captionsetup{font = small}
-	\caption{Anforderungen an ein System, um fehlertolerant zu sein 
-		\textcolor{red}{(soll Tabelle bestehen bleiben oder in Klartext umgewandelt werden?)}}
-	\label{tbl:fehlertoleranz}
-\end{table}
-bei Störungen eine korrekte Funktionsweise aufrecht zuhalten, ohne schwerwiegende Leistungsminderungen einbüßen zu müssen. Um dieses Ziel gewährleisten zu können, muss ein verteiltes System mehrere Anforderungen erfüllen. Zu diesen zählen die Fähigkeiten des Systems einen Fehler zu erkennen, eine konstante Verfügbarkeit dieses, eine gewisse Zuverlässigkeit und Funktionssicherheit des Systems. Zuletzt spielt die Wartbarkeit eines solchen Systems ohne Unterbrechungen eine wichtige Rolle, damit ein System fehlertolerant und verlässlich sein kann. Die Anforderungen sind in \autoref{tbl:fehlertoleranz} erneut aufgeführt und erläutert \cite{vS-TU-Braunschweig}. 
-
-\section{Arten von Fehlern und Störungen}
-Prinzipiell lassen sich die Störung, die ein verteiltes Systems erfahren kann, in fünf verschiedene Ausfallarten unterteilen: Absturz, Dienstausfall, zeitbedingter Ausfall, Antwortfehler und byzantinischer Ausfall \cite{vS-Dillinger}\cite{vS-TU-Braunschweig}.
-\begin{itemize}
-	\item Beim \textit{Absturz(-Ausfall)} stoppt die Ausführung des Systems. Bis zum entsprechenden Zeitpunkt hat dieses jedoch korrekt gearbeitet. %Es muss neu aufgesetzt bzw. initialisiert werden, damit Dienste wiederaufgenommen werden können.
-	\item Im Falle des \textit{Dienstausfalls} reagiert ein Dienst nicht auf eingehende Befehle. Es wird dabei unterschieden, ob das System keine eingehende Anforderung erhält (Empfangsausfall) oder keine Antwort aussendet (Sendeauslassung).
-	\item Von einem \textit{zeitbedingten Ausfall} ist die Rede wenn ein System -- auch Server -- nicht im gegebenen Zeitintervall antwortet.
-	\item Beim \textit{Antwortfehler} ist die gesendete Antwort falsch. Es wird dabei unterschieden zwischen Wertfehlern (Der Wert der Antwort ist falsch) und Zustandsübergangsfehler, in dem das System vom Programmablauf abweicht.
-	\item Zuletzt beschreibt ein \textit{byzantinischer (zufälliger) Ausfall} den Fall, wenn ein System beliebige Antworten zu beliebigen Zeiten versendet.
-\end{itemize}
-Ferner lässt eine Störung, die einen solchen Ausfall verursachen kann, anhand einer zeitlichen Komponente einordnen. Dabei wird zwischen transiente, sich wiederholende und permanente Fehler unterschieden \cite{vS-Dillinger}.\\
-Transiente Fehler beschreiben dabei einmalig auftretende Störungen. Da diese oft nur unter einzigartigen oder sehr bestimmten Voraussetzungen eintreten, sind solche Fehler oft schwer vorherzusagen. Wiederholende Fehler treten periodisch oder bei bestimmten Voraussetzungen auf, die regelmäßig erfüllt werden. Permanente Fehler beschreiben Störungen, die nach Eintritt bestehen bleiben. In der Regel muss die betroffene Komponente repariert bzw. ersetzt wird.
-
-
-\section{Fehlerbehebung}
-Verteilte Systeme besitzen durch die dezentrale Natur viele Fehlerquellen. Daher sollte beim Aufbau eines solchen Systems besonderen Wert auf die Fehlertoleranz gelegt werden, um stets eine konsistente Funktionsweise gewährleisten zu können.\\
-Das generell Vorgehen sollte dabei sein den Fehler oder die Störung zu maskieren und vor anderen Komponenten (wie dem Client) zu verbergen. Systemintern kann dann der Ausfall behoben werden -- im Idealfall ohne Beeinträchtigung einer außenstehenden Komponente. Dabei spielt vor allem die Redundanz im System eine wichtige Rolle. Es wird dabei zwischen Informationsredundanz, zeitlicher und physischer Redundanz unterschieden.
-\begin{itemize}
-	\item \textit{Informationsredundanz} beschreibt die Eigenschaft eines Dienstes notwendige Informationen zu übertragen, obwohl Informationsteile auf dem Transportweg verloren gehen. Ein klassisches Beispiel wäre die Verwendung eines geeigneten Kodierungsverfahrens, um Bit-Fehler erkennen und korrigieren zu können (vgl. Hemming-Codes) \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/Hamming-Code)}.
-	\item Bei \textit{zeitlicher Redundanz} kann ein fehlgeschlagener Prozess erneut durchgeführt werden. Ein Beispiel eines solchen Prozesses könnten Transaktionen wie \texttt{PUSH}- und \texttt{GET}-Anfragen an einen \texttt{HTML}-Server sein.
-	\item \textit{Physische Redundanz} zeichnet sich durch zusätzliche, dedizierte Hardware aus. Diese könnte in Form von vollständigen Servern oder einzelnen Komponenten sein, wie zusätzlicher Festplatten, die in einem Verbund -- beispielsweise als \textit{RAID}-System -- geschaltet sind, um eine Ausfallsicherheit zu erhöhen. Mit einem solchen System könnten zudem eine erhöhte Datendurchsatzrate erzielt werden \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/RAID)}.
-\end{itemize}
- \textcolor{red}{- auf Replikation eingehen\\
-- wie können einzelne Ausfallfälle behandelt werden ...}
-
-\newpage
-
-\nocite{*}
-\thispagestyle{headings}
-
-\bibliographystyle{IEEEtr}
-\bibliography{bibo} 
+		\vspace{50pt}
+		Wir versichern hiermit, dass wir die vorliegende Arbeit mit dem Thema \par
+		\quad\textbf{\glqq{}Sicherheit und Fehlermodelle von verteilten Systemen\grqq{}} \par
+		ohne fremde Hilfe selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt haben. \par
+		Zudem stimmt die elektronisch eingereichte Fassung mit der Originalfassung überein. \par
+		Die Arbeit wurde bisher noch nicht in gleicher oder ähnlicher Form vorgelegt.
+		
+		\vfill
+		\noindent\rule{5cm}{.4pt}\hfill\rule{5cm}{.4pt}\par
+		\noindent Datum, Ort \hfill Unterschrift 
+		
+	\tableofcontents
+	\addtocontents{toc}{}
+	
+	\pagenumbering{arabic}
+	
+	\chapter{Einführung}
+		
+		Ein wichtiger Aspekt verteilter Systeme (vS) ist das erhöhte Sicherheits- und Schutzbedürfnis dieser. Dieses ergibt sich aus ihrem offenen Aufbau, sowie der netzwerkgestützten Kommunikation zwischen den einzelnen Teilsystemen. Aus diesem Grund besitzen verteilte Systeme eine Vielzahl verschiedenster Angriffsvektoren. Besonders im Kontext von kritischer Infrastruktur (KRITIS) und verschiedenen Branchen, wie etwa Banken und E-Commerce, müssen Sicherheit und Datenschutz als essenzielle Bestandteile des Gesamtsystems angesehen werden. \\
+		Um eine möglichst große Anzahl an möglichen Sicherheitsproblemen zu eliminieren, ist es notwendig schon während der ersten Planungsphasen die sicherheitsrelevanten Aspekte mit in die Überlegungen einzubeziehen. So können eventuelle Schwachstellen möglichst früh identifiziert und entsprechende Gegenmaßnamen in das System integriert werden. Wichtig hierbei ist, dass alle Schutzmaßnamen kontinuierlich im gesamten System implementiert werden, da schon eine einziger Mangel innerhalb einer Komponente zur Kompromittierung des Gesamtsystems führen kann. \\
+		Um allen sicherheits- und datenschutzrelevanten Anforderungen moderner IT-Systeme zu entsprechen, sind eine Vielzahl verschiedenster Mechanismen und Subkomponenten zu betrachten. Die wichtigsten dieser sollen im weiteren Verlauf dieser Arbeit näher betrachtet werden, hierzu zählen unter anderem:
+		
+		\begin{itemize}
+			\item Kryptoverfahren
+			\item Authentisierung
+			\item Autorisierung
+			\item Arten von Fehlern und Störungen, sowie deren korrekte Behandlung
+		\end{itemize}
+		
+		
+	\chapter{Sicherheit}
+		
+		\section{Schutzziele}
+			
+			An dieser Stelle lohnt es sich kurz auf die Grundlagen der IT-Sicherheit einzugehen: \\ \\
+			\glqq{}Als Informationssicherheit bezeichnet man Eigenschaften von informationsverarbeitenden und -lagernden (technischen oder nicht-technischen) Systemen, die die
+			Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität sicherstellen.
+			Informationssicherheit dient dem Schutz vor Gefahren bzw. Bedrohungen, der Vermeidung von wirtschaftlichen Schäden und der Minimierung von Risiken.\grqq{} \cite{ScriptITSicherheit}
+			
+			Somit kann festgehalten werden, dass die Schutzziele Vertraulichkeit, Verfügbarkeit und Integrität die oberste Priorität von allen sicherheitstechnischen Überlegungen sind:
+			
+			\begin{itemize}
+				\item Vertraulichkeit: Verhinderung von jedem unautorisierten Informationsgewinn (Zugriff auf vertrauliche Daten)
+				\item Integrität: Verhinderung von unabsichtlicher und unautorisierter Modifizierung von Daten (falls eine Datenveränderung nicht komplett unterbunden werden kann, so muss zumindest gewährleistet sein, dass diese vom System bemerkt wird)
+				\item Verfügbarkeit: Autorisierte Subjekte sollen von unautorisierten Zugriffen in der Nutzung ihrer Berechtigungen nicht beeinträchtigt werden
+			\end{itemize}
+			
+		\section{Angriffsvektoren}
+			
+			Das Ziel eines möglichen Angreifers ist es, eines der im vorherigen Abschnitt erläuterten, Schutzziele zu verletzen. Hierbei kann ein bestimmter Angriff (Vektor) durchaus mehrere Schutzziele kompromittieren. Im folgenden sollen einige mögliche Angriffsmöglichkeiten beispielhaft aufgeführt werden.
+			
+			\begin{itemize}
+				\item Man-in-the-Middle (MITM): Vertraulichkeit
+				\item Trojaner (z. B. Emotet / Trickbot): Integrität
+				\item Denial of Service (DoS / DDoS): Verfügbarkeit
+				\item SQL-Injection: Vertraulichkeit, Integrität
+			\end{itemize}
+			
+		\section{Schutzmaßnahmen}
+			
+			Um die Schutzziele Vertraulichkeit, Integrität und Verfügbarkeit vor den genannten Angriffen zu bewahren, müssen geeignete Sicherheitsmechanismen bereitgestellt werden. Diese Verfahren basieren grundlegend auf dem Gebiet der Kryptographie.
+			
+			\subsection{Verschlüsselung}
+				
+				Damit die Vertraulichkeit bei der Kommunikation von verteilten Systemen gewährleistet werden kann, muss die ursprünglich im Klartext enthaltene Nachricht durch Anwendung kryptographischer Algorithmen verschlüsselt werden. Eine Verschlüsselung der Daten erfolgt hierbei beim Sender und eine Entschlüsselung beim Empfänger. \\
+				Um die Verschlüsselung zu gewährleisten muss weiterhin sichergestellt werden, dass die Schlüssel (auch bei einer Übertragung) geheim bleiben.
+				
+				Die Verschlüsselung kann in drei grundlegenden Klassen eingeteilt werden \cite{verteilteSysteme} \cite{ITSicherheit}:
+				\begin{itemize}
+					\item Symmetrische Verfahren: ein gemeinsamer Schlüssel zur Ver- und Entschlüsselung
+					\item Asymmetrische Verfahren: zwei unterschiedliche Schlüssel, unterteilt in einen öffentlichen zur Verschlüsselung und einen privaten zur Entschlüsselung
+					\item Kombinierte Verfahren / Hybridverfahren: Zusammensetzung der beiden genannten Verfahren
+				\end{itemize}
+				
+				Der Vorteil der asymmetrischen Verfahren im Gegensatz zu den symmetrischen ist, dass ein öffentlicher Austausch des Schlüssels erfolgen kann, ohne dass die Vertraulichkeit der Information gefährdet wird. Durch die hohe Komplexität der Berechnungsvorschrift für das Schlüsselpaar ist die Performanz jedoch schlechter als bei der symmetrischen Verschlüsselung.
+				
+				Standardmäßig eingesetzte symmetrische Verschlüsselungsalgorithmen sind das nicht mehr sichere DES (\textit{Data Encryption Standard}) und dessen Erweiterung Triple-DES, sowie AES (\textit{Advanced Encryption Standard}). Das erste veröffentlichte asymmetrische Verschlüsselungsverfahren und bekannteste Beispiel dafür ist RSA.
+				
+			\subsection{Authentisierung}
+				
+				Über eine Authentisierung wird gewährleistet, dass die Identität der Systeme, mit denen kommuniziert wird, korrekt ist. Diese Maßnahme dient sowohl zum Schutz der Vertraulichkeit als auch der Integrität. Ebenso wie bei der Verschlüsselung werden bei der Authentisierung sowohl symmetrische als auch asymmetrische Verschlüsselungsverfahren eingesetzt.
+				
+				Bei dem \textbf{symmetrischen Verfahren} agiert eine Schlüsselvergabestelle als zentrale Instanz zur Authentisierung. Aufgrund der Relevanz muss diese gegen Ein- und Angriffe besonders gut geschützt und in einem sicheren Bereich des Servers lokalisiert sein. \\
+				Sobald ein Client eine Anfrage mit den eindeutigen Identifikatoren von ihm und des Servers sendet, generiert die Vergabestelle eine \textit{Challenge}, häufig eine zufällige Zahl. Diese muss der Client daraufhin mit dem gemeinsamen Schlüssel verschlüsselt zurücksenden und nach der Entschlüsselung kann die Vergabestelle wiederum überprüfen ob die \textit{Challenge} absolviert wurde, indem die Zahl korrekt verschlüsselt wurde \cite{verteilteSysteme}.
+				
+				Das symmetrische Verfahren basiert auf dem \textit{Needham-Schroeder-Protokoll} und die bekannteste eingesetzte Variante ist \textit{Kerberos}, welches unter anderem als abgewandelte Form in Unix eingesetzt wird.
+				
+				Das \textbf{asymmetrische Verfahren} basiert hingegen auf zwei \textit{Challenges}, die einerseits vom Server und andererseits vom Client gelöst werden müssen. Der Client sendet hierbei in seiner Anfrage, die über den öffentlichen Schlüssel des Servers verschlüsselt wird, neben seinem Identifikator eine zufällige Zahl. Der Server kann diese anschließend entschlüsseln und generiert eine weitere zufällige Zahl und einen Konversationsschlüssel und sendet diese zusammen mit dem Ergebnis aus der ersten \textit{Challenge} verschlüsselt mit dem öffentlichen Schlüssel des Clients zurück. Dieser kann die Nachricht nun entschlüsseln und überprüfen ob der Server die \textit{Challenge} absolviert und somit seine Identität bestätigt hat. Letztendlich wird die Zufallszahl des Servers, verschlüsselt mit dem Konversationsschlüssel, an den Server zurückgesendet und dieser validiert daraufhin, dass der Client die korrekte Zahl gesendet hat und somit die zweite \textit{Challenge} gelöst hat \cite{verteilteSysteme}.
+				
+			\subsection{Autorisierung}
+				
+				Mit Autorisierung wird die Überprüfung von festgelegten Zugriffsrechten von authentisierten Identitäten bezeichnet. 
+				
+				Zur Darstellung der Zugriffsrechte wird im Allgemeinen eine Zugriffsmatrix verwendet. In dieser sind in den Spalten die Identitäten, Subjekte genannt, und in den Zeilen die Dienste und Ressourcen, Objekte genannt, abgebildet. In den einzelnen Zellen sind jeweils die Operationen (z. B. lesen, schreiben, ausführen) zugeordnet. \\
+				Aufgrund von höherer Fehlertoleranz und besserer Performanz wird die Zugriffsmatrix dezentral hinterlegt. Dabei gibt es grundsätzlich zwei Ansätze: entweder werden die Zeilen, sogenannte Zugriffskontrolllisten, für die einzelnen Objekte abgespeichert oder die Spalten, in dem Fall als Berechtigungen bezeichnet, werden für jedes Subjekt abgelegt \cite{ITSicherheit}. Unter den meisten geläufigen Betriebssystemen, z. B. \textit{Windows} oder \textit{Linux}, werden Zugriffskontrolllisten eingesetzt.
+				
+				Durch Einführung von Gruppen, eine Zusammenfassung von mehreren Subjekten, und Rollen, eine Kombination von verschiedenen Zugriffsrechten, können die Dimensionen der Zugriffsmatrix deutlich reduziert werden.
+				
+	\chapter{Fehlermodelle}
+		
+		Sowohl system-externe als auch system-interne Fehlerereignisse und Störungen können die Stabilität und Verfügbarkeit eines Systems kompromittieren. Zu externen Störungen lassen sich unter anderem Natureinflüsse (wie Stromausfälle) oder gezielte Attacken auf die zuvor definierten Schutzziele zählen. Interne Störungen umfassen Hardware-Probleme (wie Festplatten-Ausfälle) und Software-Probleme. Verteilte Systeme sind dabei durch den physikalisch getrennten Aufbau weniger anfällig für Komplettausfälle. In der Regel sind bei Störungen einzelne Komponenten oder Teilsysteme betroffen. Gleichzeitig kann es durch den komplexeren Aufbau zu regelmäßigeren Ausfällen kommen (wie durch Wartungsarbeiten) und Fehler in einer Komponente können sich auf andere übertragen. Ein wichtiger Teil eines verteilten Systems umfasst damit auch die Vorbeugung von und den Umgang mit Ausfällen von solchen Systemkomponenten.
+		
+		\section{Anforderungen}
+			
+			Ausfälle und Störungen eines Teilsystems gänzlich vorzubeugen ist sehr schwer -- wenn nicht unmöglich. Ein zentrales Ziel muss daher sein, ein verteiltes System so aufzubauen, dass es eine gewissen Fehlertoleranz besitzt. Die Fehlertoleranz beschreibt die Eigenschaft eines Systems bei Störungen eine korrekte Funktionsweise aufrecht zuhalten, ohne schwerwiegende Leistungsminderungen einbüßen zu müssen.
+			
+			\begin{table}[h]
+				\centering
+				\begin{tabular}[h]{ll}
+					\toprule
+					Anforderung 		& Beschreibung \\
+					\midrule
+					Fehlererkennung		& um fehlertolerant zu sein, muss ein System Ausfälle \\
+					& erkennen und auf diese reagieren können \vspace{4pt} \\
+					Verfügbarkeit 		& das System und dessen Dienste sind stets verfügbar \\
+					& und erreichbar \vspace{4pt} \\
+					Zuverlässigkeit		& ein System wird durchgehend fehlerfrei ausgeführt  \vspace{4pt} \\
+					Funktionssicherheit	& Störungen im System kompromittieren nicht die Sicher- \\
+					& heit von Daten oder führen nicht zu ungewollten \\
+					& Aktionen und Ergebnissen \vspace{4pt} \\
+					Wartbarkeit 		& beschreibt den Aufwand der Wartung eines Systems \\		
+					\bottomrule
+				\end{tabular}
+				\captionsetup{font = small}
+				\caption{Anforderungen an ein fehlertolerantes System}
+				\label{tbl:fehlertoleranz}
+			\end{table}
+			
+			Um dieses Ziel gewährleisten zu können, muss ein verteiltes System mehrere Anforderungen erfüllen. Zu diesen zählen die Fähigkeiten des Systems einen Fehler zu erkennen, eine konstante Verfügbarkeit dessen, eine gewisse Zuverlässigkeit und Funktionssicherheit des Systems. Zuletzt spielt die Wartbarkeit eines solchen Systems ohne Unterbrechungen eine wichtige Rolle, damit ein System fehlertolerant und verlässlich sein kann. Die Anforderungen sind in \autoref{tbl:fehlertoleranz} erneut aufgeführt und erläutert \cite{vS-TU-Braunschweig}.
+			
+		\section{Arten von Fehlern und Störungen}
+			
+			Prinzipiell lassen sich die Störung, die ein verteiltes Systems erfahren kann, in fünf verschiedene Ausfallarten unterteilen: Absturz, Dienstausfall, zeitbedingter Ausfall, Antwortfehler und byzantinischer Ausfall \cite{vS-TU-Braunschweig} \cite{vS-Dillinger}.
+			
+			\begin{itemize}
+				\item Beim \textit{Absturz} (bzw. \textit{Ausfall}) stoppt die Ausführung des Systems. Bis zum entsprechenden Zeitpunkt hat dieses jedoch korrekt gearbeitet.
+				\item Im Falle des \textit{Dienstausfalls} reagiert ein Dienst nicht auf eingehende Befehle. Es wird dabei unterschieden, ob das System keine eingehende Anforderung erhält (Empfangsausfall) oder keine Antwort aussendet (Sendeauslassung).
+				\item Von einem \textit{zeitbedingten Ausfall} ist die Rede, wenn ein System -- auch Server -- nicht im gegebenen Zeitintervall antwortet.
+				\item Beim \textit{Antwortfehler} ist die gesendete Antwort falsch. Es wird dabei zwischen Wertfehlern (der Wert der Antwort ist falsch) und Zustandsübergangsfehler, in dem das System vom Programmablauf abweicht, unterschieden.
+				\item Zuletzt beschreibt ein \textit{byzantinischer (zufälliger) Ausfall} den Fall, wenn ein System beliebige Antworten zu beliebigen Zeiten versendet.
+			\end{itemize}
+			
+			Ferner lässt sich eine Störung, die einen solchen Ausfall verursachen kann, anhand einer zeitlichen Komponente einordnen. Dabei wird zwischen transiente, sich wiederholende und permanente Fehler unterschieden \cite{vS-Dillinger}. \\
+			Transiente Fehler beschreiben dabei einmalig auftretende Störungen. Da diese oft nur unter einzigartigen oder sehr bestimmten Voraussetzungen eintreten, sind solche Fehler oft schwer vorherzusagen. Wiederholende Fehler treten periodisch oder bei bestimmten Voraussetzungen auf, die regelmäßig erfüllt werden. Permanente Fehler beschreiben Störungen, die nach Eintritt bestehen bleiben. In der Regel muss die betroffene Komponente repariert bzw. ersetzt wird.
+	
+		\section{Fehlerbehebung}
+			
+			Verteilte Systeme besitzen durch die dezentrale Natur viele Fehlerquellen. Daher sollte beim Aufbau eines solchen Systems besonderen Wert auf die Fehlertoleranz gelegt werden, um stets eine konsistente Funktionsweise gewährleisten zu können. \\
+			Das generell Vorgehen sollte dabei sein den Fehler oder die Störung zu maskieren und vor anderen Komponenten (wie dem Client) zu verbergen. System-intern kann dann der Ausfall behoben werden -- im Idealfall ohne Beeinträchtigung einer außenstehenden Komponente. Dabei spielt vor allem die Redundanz im System eine wichtige Rolle. Es wird dabei zwischen Informationsredundanz, zeitlicher und physischer Redundanz unterschieden.
+			
+			\begin{itemize}
+				\item \textit{Informationsredundanz} beschreibt die Eigenschaft eines Dienstes notwendige Informationen zu übertragen, obwohl Informationsteile auf dem Transportweg verloren gehen. Ein klassisches Beispiel wäre die Verwendung eines geeigneten Kodierungsverfahrens, um Bit-Fehler erkennen und korrigieren zu können (vgl. Hemming-Codes) \cite{hamming}.
+				\item Bei \textit{zeitlicher Redundanz} kann ein fehlgeschlagener Prozess erneut durchgeführt werden. Ein Beispiel eines solchen Prozesses könnten Transaktionen wie \texttt{PUSH}- und \texttt{GET}-Anfragen an einen \texttt{HTML}-Server sein.
+				\item \textit{Physische Redundanz} zeichnet sich durch zusätzliche, dedizierte Hardware aus. Diese könnte in Form von vollständigen Servern oder einzelnen Komponenten sein, wie zusätzlicher Festplatten, die in einem Verbund -- beispielsweise als \texttt{RAID}-System -- geschaltet sind, um eine Ausfallsicherheit zu erhöhen. Mit einem solchen System kann zudem eine erhöhte Datendurchsatzrate erzielt werden \cite{raid}.
+			\end{itemize}
+			
+	\newpage
+	
+	\nocite{*}
+	\thispagestyle{headings}
+	
+	\bibliographystyle{IEEEtr}
+	\bibliography{bibo} 
 
 \end{document}
