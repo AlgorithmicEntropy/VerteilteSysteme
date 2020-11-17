@@ -258,8 +258,7 @@
 		\end{tabular}
 		%	}
 		\captionsetup{font = small}
-		\caption{Anforderungen an ein System, um fehlertolerant zu sein 
-			\textcolor{red}{(soll Tabelle bestehen bleiben oder in Klartext umgewandelt werden?)}}
+		\caption{Anforderungen an ein System, um fehlertolerant zu sein}
 		\label{tbl:fehlertoleranz}
 	\end{table}
 	bei Störungen eine korrekte Funktionsweise aufrecht zuhalten, ohne schwerwiegende Leistungsminderungen einbüßen zu müssen. Um dieses Ziel gewährleisten zu können, muss ein verteiltes System mehrere Anforderungen erfüllen. Zu diesen zählen die Fähigkeiten des Systems einen Fehler zu erkennen, eine konstante Verfügbarkeit dieses, eine gewisse Zuverlässigkeit und Funktionssicherheit des Systems. Zuletzt spielt die Wartbarkeit eines solchen Systems ohne Unterbrechungen eine wichtige Rolle, damit ein System fehlertolerant und verlässlich sein kann. Die Anforderungen sind in \autoref{tbl:fehlertoleranz} erneut aufgeführt und erläutert \cite{vS-TU-Braunschweig}. 
@@ -281,12 +280,12 @@
 	Verteilte Systeme besitzen durch die dezentrale Natur viele Fehlerquellen. Daher sollte beim Aufbau eines solchen Systems besonderen Wert auf die Fehlertoleranz gelegt werden, um stets eine konsistente Funktionsweise gewährleisten zu können.\\
 	Das generell Vorgehen sollte dabei sein den Fehler oder die Störung zu maskieren und vor anderen Komponenten (wie dem Client) zu verbergen. Systemintern kann dann der Ausfall behoben werden -- im Idealfall ohne Beeinträchtigung einer außenstehenden Komponente. Dabei spielt vor allem die Redundanz im System eine wichtige Rolle. Es wird dabei zwischen Informationsredundanz, zeitlicher und physischer Redundanz unterschieden.
 	\begin{itemize}
-		\item \textit{Informationsredundanz} beschreibt die Eigenschaft eines Dienstes notwendige Informationen zu übertragen, obwohl Informationsteile auf dem Transportweg verloren gehen. Ein klassisches Beispiel wäre die Verwendung eines geeigneten Kodierungsverfahrens, um Bit-Fehler erkennen und korrigieren zu können (vgl. Hemming-Codes) \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/Hamming-Code)}.
+		\item \textit{Informationsredundanz} beschreibt die Eigenschaft eines Dienstes notwendige Informationen zu übertragen, obwohl Informationsteile auf dem Transportweg verloren gehen. Ein klassisches Beispiel wäre die Verwendung eines geeigneten Kodierungsverfahrens, um Bit-Fehler erkennen und korrigieren zu können (vgl. Hemming-Codes) \cite{hamming}.
 		\item Bei \textit{zeitlicher Redundanz} kann ein fehlgeschlagener Prozess erneut durchgeführt werden. Ein Beispiel eines solchen Prozesses könnten Transaktionen wie \texttt{PUSH}- und \texttt{GET}-Anfragen an einen \texttt{HTML}-Server sein.
-		\item \textit{Physische Redundanz} zeichnet sich durch zusätzliche, dedizierte Hardware aus. Diese könnte in Form von vollständigen Servern oder einzelnen Komponenten sein, wie zusätzlicher Festplatten, die in einem Verbund -- beispielsweise als \textit{RAID}-System -- geschaltet sind, um eine Ausfallsicherheit zu erhöhen. Mit einem solchen System könnten zudem eine erhöhte Datendurchsatzrate erzielt werden \textcolor{red}{(Quelle: https://de.wikipedia.org/wiki/RAID)}.
+		\item \textit{Physische Redundanz} zeichnet sich durch zusätzliche, dedizierte Hardware aus. Diese könnte in Form von vollständigen Servern oder einzelnen Komponenten sein, wie zusätzlicher Festplatten, die in einem Verbund -- beispielsweise als \texttt{RAID}-System -- geschaltet sind, um eine Ausfallsicherheit zu erhöhen. Mit einem solchen System könnten zudem eine erhöhte Datendurchsatzrate erzielt werden \cite{raid}.
 	\end{itemize}
-	\textcolor{red}{- auf Replikation eingehen\\
-		- wie können einzelne Ausfallfälle behandelt werden ...}
+	%\textcolor{red}{- auf Replikation eingehen\\
+	%	- wie können einzelne Ausfallfälle behandelt werden ...}
 	
 	\newpage
 	
